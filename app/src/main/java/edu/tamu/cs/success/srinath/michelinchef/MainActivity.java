@@ -71,8 +71,6 @@ public class MainActivity extends Activity
                 return HealthyRecipesFragment.newInstance(sectionNumber);
             case 4: Log.d(TAG, "Launching Quick & Easy fragment");
                 break;
-            case 5: Log.d(TAG, "Launching Settings fragment...");
-                    break;
             default:Log.d(TAG, "Section Number == None?");
                 break;
         }
@@ -92,9 +90,6 @@ public class MainActivity extends Activity
                 break;
             case 4:
                 mTitle = getString(R.string.title_quick_easy);
-                break;
-            case 5:
-                mTitle = getString(R.string.title_settings);
                 break;
         }
     }
