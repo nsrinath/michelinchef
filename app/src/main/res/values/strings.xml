@@ -15,9 +15,11 @@
     <string name="title_activity_cuisines">CuisinesActivity</string>
 
     <string name="hello_world">Hello world!</string>
-    <string name="title_activity_quick_easy">QuickEasy</string>
-    <string name="title_activity_cheap_eats">CheapEats</string>
-    <string name="title_activity_digital_card">DigitalCard</string>
+    <string name="title_quick_easy">Quick and Easy</string>
+    <string name="title_cheap_eats">Cheap Eats</string>
+    <string name="title_healthy_recipes">Healthy Recipes</string>
 
-    <string name="top_stories_fragment">All top stories can be found here!</string>
+    <string name="title_digital_card">DigitalCard</string>
+    <string name="top_stories_fragment">Top Stories</string>
+
 </resources>

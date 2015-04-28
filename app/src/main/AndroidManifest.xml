@@ -22,15 +22,15 @@
         </activity>
         <activity
             android:name=".QuickEasy"
-            android:label="@string/title_activity_quick_easy" >
+            android:label="@string/title_quick_easy" >
         </activity>
         <activity
             android:name=".CheapEats"
-            android:label="@string/title_activity_cheap_eats" >
+            android:label="@string/title_cheap_eats" >
         </activity>
         <activity
             android:name=".DigitalCard"
-            android:label="@string/title_activity_digital_card" >
+            android:label="@string/title_digital_card" >
         </activity>
     </application>
 

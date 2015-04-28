@@ -7,12 +7,14 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
+
+import edu.tamu.cs.success.srinath.michelinchef.fragments.HealthyRecipesFragment;
+import edu.tamu.cs.success.srinath.michelinchef.fragments.NavigationDrawerFragment;
+import edu.tamu.cs.success.srinath.michelinchef.fragments.PlaceholderFragment;
+import edu.tamu.cs.success.srinath.michelinchef.fragments.TopStoriesFragment;
 
 
 public class MainActivity extends Activity
@@ -53,16 +55,24 @@ public class MainActivity extends Activity
                 .commit();
     }
 
+    /**
+     * Takes the sectionNumber (position on the list) as input and
+     * generates the corresponding Fragment before returning it for display
+     * @param sectionNumber
+     * @return Fragment containing the required UI
+     */
     private Fragment getCorrespondingFragment(int sectionNumber) {
         switch (sectionNumber) {
-            case 1: Log.d(TAG, "Launching top stories");
+            case 1: Log.d(TAG, "Launching top stories...");
                 return TopStoriesFragment.newInstance(sectionNumber);
-            case 2: Log.d(TAG, "Section Number == 2");
+            case 2: Log.d(TAG, "Launching Cheap eats fragment...");
                 break;
-            case 3: Log.d(TAG, "Section Number == 3");
+            case 3: Log.d(TAG, "Launching healthy recipes fragment...");
+                return HealthyRecipesFragment.newInstance(sectionNumber);
+            case 4: Log.d(TAG, "Launching Quick & Easy fragment");
                 break;
-            case 4: Log.d(TAG, "Section Number == 4");
-                break;
+            case 5: Log.d(TAG, "Launching Settings fragment...");
+                    break;
             default:Log.d(TAG, "Section Number == None?");
                 break;
         }
@@ -75,9 +85,15 @@ public class MainActivity extends Activity
                 mTitle = getString(R.string.title_home);
                 break;
             case 2:
-                mTitle = getString(R.string.title_cuisines);
+                mTitle = getString(R.string.title_cheap_eats);
                 break;
             case 3:
+                mTitle = getString(R.string.title_healthy_recipes);
+                break;
+            case 4:
+                mTitle = getString(R.string.title_quick_easy);
+                break;
+            case 5:
                 mTitle = getString(R.string.title_settings);
                 break;
         }
