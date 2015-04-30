@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import edu.tamu.cs.success.smit.michelinchef.DatabaseHelper;
 import edu.tamu.cs.success.srinath.michelinchef.fragments.HealthyRecipesFragment;
 import edu.tamu.cs.success.srinath.michelinchef.fragments.NavigationDrawerFragment;
 import edu.tamu.cs.success.srinath.michelinchef.fragments.PlaceholderFragment;
@@ -23,6 +24,8 @@ public class MainActivity extends Activity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     private static final String TAG = "MichelinChef-MainAct";
+
+    DatabaseHelper helper;
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
@@ -46,6 +49,8 @@ public class MainActivity extends Activity
                 startActivity(launchRecipeCardActivity);
             }
         });
+
+        helper = new DatabaseHelper(this);
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getFragmentManager().findFragmentById(R.id.navigation_drawer);

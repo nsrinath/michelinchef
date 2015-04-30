@@ -14,6 +14,7 @@ import edu.tamu.cs.success.srinath.michelinchef.entities.RecipeStep;
 /**
  * Created by srinath on 4/29/15.
  */
+
 public class RecipeCardActivity extends Activity{
 
     private List<RecipeStep> aRecipe;
@@ -36,6 +37,9 @@ public class RecipeCardActivity extends Activity{
         recyclerView.setAdapter(recipeRecyclerViewAdapter);
     }
 
+    /**
+     * Get the recipe steps form the database
+     */
     private void initializeRecipeSteps() {
         aRecipe = new ArrayList<>();
         aRecipe.add(new RecipeStep("This is the first step!", R.drawable.cuisine_american, 270000));
