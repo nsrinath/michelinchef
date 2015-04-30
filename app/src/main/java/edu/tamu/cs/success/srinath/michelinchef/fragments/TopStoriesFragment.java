@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import edu.tamu.cs.success.srinath.michelinchef.MainActivity;
+import edu.tamu.cs.success.srinath.michelinchef.activities.MainActivity;
 import edu.tamu.cs.success.srinath.michelinchef.R;
 
 

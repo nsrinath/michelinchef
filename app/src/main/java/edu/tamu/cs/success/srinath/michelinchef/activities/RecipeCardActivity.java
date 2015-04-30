@@ -1,4 +1,4 @@
-package edu.tamu.cs.success.srinath.michelinchef;
+package edu.tamu.cs.success.srinath.michelinchef.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.tamu.cs.success.srinath.michelinchef.R;
 import edu.tamu.cs.success.srinath.michelinchef.adapters.RecipeRecyclerViewAdapter;
 import edu.tamu.cs.success.srinath.michelinchef.entities.RecipeStep;
 

@@ -1,4 +1,4 @@
-package edu.tamu.cs.success.srinath.michelinchef;
+package edu.tamu.cs.success.srinath.michelinchef.activities;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 
 import edu.tamu.cs.success.smit.michelinchef.DatabaseHelper;
+import edu.tamu.cs.success.srinath.michelinchef.R;
 import edu.tamu.cs.success.srinath.michelinchef.fragments.CheapEatsFragment;
 import edu.tamu.cs.success.srinath.michelinchef.fragments.CuisinesFragment;
 import edu.tamu.cs.success.srinath.michelinchef.fragments.HealthyRecipesFragment;
