@@ -14,9 +14,12 @@ import android.view.View;
 import android.widget.Button;
 
 import edu.tamu.cs.success.smit.michelinchef.DatabaseHelper;
+import edu.tamu.cs.success.srinath.michelinchef.fragments.CheapEatsFragment;
+import edu.tamu.cs.success.srinath.michelinchef.fragments.CuisinesFragment;
 import edu.tamu.cs.success.srinath.michelinchef.fragments.HealthyRecipesFragment;
 import edu.tamu.cs.success.srinath.michelinchef.fragments.NavigationDrawerFragment;
 import edu.tamu.cs.success.srinath.michelinchef.fragments.PlaceholderFragment;
+import edu.tamu.cs.success.srinath.michelinchef.fragments.QuickEasyFragment;
 import edu.tamu.cs.success.srinath.michelinchef.fragments.TopStoriesFragment;
 
 
@@ -82,11 +85,13 @@ public class MainActivity extends Activity
             case 1: Log.d(TAG, "Launching top stories...");
                 return TopStoriesFragment.newInstance(sectionNumber);
             case 2: Log.d(TAG, "Launching Cheap eats fragment...");
-                break;
+                return CheapEatsFragment.newInstance(sectionNumber);
             case 3: Log.d(TAG, "Launching healthy recipes fragment...");
                 return HealthyRecipesFragment.newInstance(sectionNumber);
             case 4: Log.d(TAG, "Launching Quick & Easy fragment");
-                break;
+                return QuickEasyFragment.newInstance(sectionNumber);
+            case 5: Log.d(TAG, "Launching Cuisines fragment");
+                return CuisinesFragment.newInstance(sectionNumber);
             default:Log.d(TAG, "Section Number == None?");
                 break;
         }
@@ -106,6 +111,9 @@ public class MainActivity extends Activity
                 break;
             case 4:
                 mTitle = getString(R.string.title_quick_easy);
+                break;
+            case 5:
+                mTitle = getString(R.string.title_cuisines);
                 break;
         }
     }
