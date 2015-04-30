@@ -346,10 +346,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
         db.execSQL("DROP TABLE IF EXISTS " + COOKING_CATEGORY_TABLE_NAME);
-        db.execSQL("DROP TABLE IF EXISTS " + REGIONAL_CATEGORY_CREATE_QUERY);
-        db.execSQL("DROP TABLE IF EXISTS " + OTHER_CATEGORY_CREATE_QUERY);
-        db.execSQL("DROP TABLE IF EXISTS " + INGREDIENTS_CREATE_QUERY);
-        db.execSQL("DROP TABLE IF EXISTS " + RECIPE_CREATE_QUERY);
+        db.execSQL("DROP TABLE IF EXISTS " + REGIONAL_CATEGORY_TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + OTHER_CATEGORY_TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + INGREDIENTS_TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + RECIPE_TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + RECIPE_MASTER_TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + RECIPE_CATEGORY_TABLE_NAME);
         onCreate(db);
     }
 }
