@@ -1,15 +1,17 @@
 package edu.tamu.cs.success.srinath.michelinchef;
 
-import android.app.Activity;
-
 import android.app.ActionBar;
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.support.v4.widget.DrawerLayout;
+import android.view.View;
+import android.widget.Button;
 
 import edu.tamu.cs.success.srinath.michelinchef.fragments.HealthyRecipesFragment;
 import edu.tamu.cs.success.srinath.michelinchef.fragments.NavigationDrawerFragment;
@@ -35,6 +37,15 @@ public class MainActivity extends Activity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Button mTmpCardLauncher = (Button) findViewById(R.id.tempCardLauncher);
+        mTmpCardLauncher.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent launchRecipeCardActivity = new Intent(MainActivity.this, RecipeCardActivity.class);
+                startActivity(launchRecipeCardActivity);
+            }
+        });
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getFragmentManager().findFragmentById(R.id.navigation_drawer);

@@ -4,4 +4,8 @@
     <color name="michelinPinkRed_dfAlpha">#dfff4444</color>
     <color name="michelinPinkRed_ffAlpha">#ffff4444</color>
     <color name="black">#ff000000</color>
+    <color name="brightGreen_bfalpha">#bf66FF66</color>
+    <color name="normalRed_bfAlpha">#bfFF0000</color>
+    <color name="grey_9fAlpha">#9fCCCCCC</color>
+    <color name="grey_6fAlpha">#6fCCCCCC</color>
 </resources>

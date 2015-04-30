@@ -32,6 +32,10 @@
             android:name=".DigitalCard"
             android:label="@string/title_digital_card" >
         </activity>
+        <activity
+            android:name=".RecipeCardActivity"
+            android:label="RecipeCardActivity" >
+        </activity>
     </application>
 
 </manifest>

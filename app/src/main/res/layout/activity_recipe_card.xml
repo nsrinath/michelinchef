@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/recipeCardView"
+        android:padding="8dp" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="4dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/recipeStepTimer"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/sample_timer"
+                android:textSize="25sp"
+                android:padding="8dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/recipeHeatIndicator"
+                android:background="@color/normalRed_bfAlpha"
+                android:text="@string/high_stove_heat"
+                android:padding="4dp"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/recipeCurrentStep"
+                android:background="@color/grey_9fAlpha"
+                android:text="@string/sample_recipe_step"
+                android:padding="4dp"/>
+
+            <ImageView
+                android:layout_width="192dp"
+                android:layout_height="192dp"
+                android:id="@+id/recipeCurrentImage"
+                android:src="@drawable/cuisine_indian"
+                android:padding="2dp"/>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>
