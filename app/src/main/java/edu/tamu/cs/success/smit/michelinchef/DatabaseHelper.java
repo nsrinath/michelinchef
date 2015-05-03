@@ -61,15 +61,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String RECIPE_MASTER_TABLE_NAME = "Recipe_Master";
     public static final String RECIPE_COL_1 = "recipe_id";
     public static final String RECIPE_COL_2 = "name";
-    public static final String RECIPE_COL_3 = "step";
-    public static final String RECIPE_COL_4 = "image_path";
+    public static final String RECIPE_COL_3 = "step_no";
+    public static final String RECIPE_COL_4 = "step";
+    public static final String RECIPE_COL_5 = "step_time";
+    public static final String RECIPE_COL_6 = "image_path";
 
     public static final String RECIPE_CREATE_QUERY = "Create table "
             + RECIPE_TABLE_NAME + " ( "
-            + RECIPE_COL_1 +" integer PRIMARY KEY autoincrement, "
-            + RECIPE_COL_2 + " text not null, "
-            + RECIPE_COL_3 + " text, "
-            + RECIPE_COL_4 + " text )";
+            + RECIPE_COL_1 + " integer REFERENCES "
+                    +RECIPE_MASTER_TABLE_NAME + "( " +RECIPE_COL_1 + " ),"
+            + RECIPE_COL_3 + " integer, "
+            + RECIPE_COL_4 + " text not null, "
+            + RECIPE_COL_5 + " real not null, "
+            + RECIPE_COL_6 + " text, PRIMARY KEY("+ RECIPE_COL_1 + ", " + RECIPE_COL_3 + "))";
 
     public static final String RECIPE_MASTER_CREATE_QUERY = "Create table "
             + RECIPE_MASTER_TABLE_NAME + " ( "
@@ -77,15 +81,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + RECIPE_COL_2 + " text not null)";
 
     //Table Recipe_Categories
-
     public static final String RECIPE_CATEGORY_TABLE_NAME = "Recipe_Category";
 
     public static final String RECIPE_CATEGORY_CREATE_QUERY = "Create table "
             + RECIPE_CATEGORY_TABLE_NAME + " ( "
-            + RECIPE_COL_1 +" integer not null, "
-            + COOKING_CATEGORY_COL_1 + " integer not null, "
-            + REGIONAL_CATEGORY_COL_1 + " integer, "
-            + OTHER_CATEGORY_COL_1 + " integer )";
+            + RECIPE_COL_1 +" integer not null REFERENCES "
+                    +RECIPE_MASTER_TABLE_NAME + "( " +RECIPE_COL_1 + " ),"
+            + COOKING_CATEGORY_COL_1 + " integer not null REFERENCES "
+                    +COOKING_CATEGORY_TABLE_NAME + "( " +COOKING_CATEGORY_COL_1 + " ),"
+            + REGIONAL_CATEGORY_COL_1 + " integer REFERENCES "
+                    +REGIONAL_CATEGORY_TABLE_NAME + "( " +REGIONAL_CATEGORY_COL_1 + " ),"
+            + OTHER_CATEGORY_COL_1 + " integer REFERENCES "
+                    +OTHER_CATEGORY_TABLE_NAME + "( " +OTHER_CATEGORY_COL_1 + " ))";
+
+    //Table Recipe_Ingredients
+    public static final String RECIPE_INGREDIENT_TABLE_NAME = "Recipe_Ingredients";
+    public static final String RECIPE_INGREDIENT_COL_3 = "quantity";
+    public static final String RECIPE_INGREDIENT_COL_4 = "remarks";
+
+    public static final String RECIPE_INGREDIENT_CREATE_QUERY = "Create table "
+            + RECIPE_INGREDIENT_TABLE_NAME + " ( "
+            + RECIPE_COL_1 +" integer not null REFERENCES "
+                    +RECIPE_MASTER_TABLE_NAME + "( " +RECIPE_COL_1 + " ),"
+            + INGREDIENTS_COL_1 + " integer not null REFERENCES "
+                    +INGREDIENTS_TABLE_NAME + "( " +INGREDIENTS_COL_1 + " ),"
+            + RECIPE_INGREDIENT_COL_3 + " real, "
+            + RECIPE_INGREDIENT_COL_4 + " text)";
 
 
 
@@ -103,6 +124,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(RECIPE_CREATE_QUERY);
         db.execSQL(RECIPE_MASTER_CREATE_QUERY);
         db.execSQL(RECIPE_CATEGORY_CREATE_QUERY);
+        db.execSQL(RECIPE_INGREDIENT_CREATE_QUERY);
 
         //Inserting Values in Cooking_Category Table
         db.execSQL("INSERT INTO Cooking_Category (name) VALUES ('Stove')");
@@ -266,6 +288,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO Ingredients (name, unit) VALUES ('minced chipotle chile', 'tbsp')");
         db.execSQL("INSERT INTO Ingredients (name, unit) VALUES ('mayonnaise', 'cup')");
         db.execSQL("INSERT INTO Ingredients (name, unit) VALUES ('raisins', 'tbsp')");
+        db.execSQL("INSERT INTO Ingredients (name, unit) VALUES ('chicken spices powder', 'tbsp')");
+        db.execSQL("INSERT INTO Ingredients (name, unit) VALUES ('cheddar cheese', 'cup')");
+        db.execSQL("INSERT INTO Ingredients (name, unit) VALUES ('Bread', 'slice')");
 
         //Inserting Values in Recipe_Master Table
         db.execSQL(" INSERT INTO Recipe_Master (name) VALUES ('Creamy Spinach and Chicken Pasta')");
@@ -342,6 +367,98 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(" INSERT INTO Recipe_Category (recipe_id, cook_id, region_id, other_id) VALUES (33,4,null,null)");
         db.execSQL(" INSERT INTO Recipe_Category (recipe_id, cook_id, region_id, other_id) VALUES (34,4,null,null)");
 
+        //Inserting Values in Recipe_Ingredient Table
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (1,1,1,null)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (1,2,1,null)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (1,3,2,null)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (1,4,2,null)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (1,5,0,null)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (1,6,1,null)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (1,7,1.5,null)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (1,8,1,'optional')");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (1,9,2,'optional')");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (2,10,1,null)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (2,11,1,null)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (2,12,26,'Your favourite')");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (2,13,1.5,'divided')");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (2,14,0.5,'divided')");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (2,15,1,null)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (2,16,0,null)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (2,17,0,null)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (2,18,0,null)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (3,19,3,'cooked in vegetable broth')");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (3,20,0.33,null)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (3,21,0.33,null)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (3,22,1,'drained and rinsed')");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (3,23,0,null)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (3,16,0,null)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (3,6,1,'for sautéing')");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (3,24,0,null)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (3,25,0,null)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (3,26,0,null)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (6,3,3,'Cubed')");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (6,6,3,'Olive')");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (6,43,0.5,null)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (6,17,0.25,'Black Ground')");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (6,44,6,'Cut in half lengthwise')");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (6,45,1,null)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (6,35,6,'pearl')");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (6,46,2,null)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (6,47,3,null)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (6,48,0.5,null)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (6,49,0.25,null)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (6,50,0.25,null)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (7,3,4,null)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (7,51,1,null)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (7,95,0,null)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (7,143,1,null)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (7,16,0,null)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (7,17,0,null)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (7,6,1,'Olive, Extra Virgin')");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (10,35,1,'Vertically Sliced, Red')");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (10,32,0,null)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (10,144,1,'Shredded, White')");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (10,145,8,null)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (10,65,2,null)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (10,36,2,'Slice')");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (10,66,6,'Centre Cut, Cooked')");
+
+        //Inserting Values in Table Recipe
+        db.execSQL("INSERT INTO Recipe (recipe_id, step_no, step, step_time, image_path) VALUES (6,1,'In a large, deep frying pan heat the olive oil on medium high.',2,NULL)");
+        db.execSQL("INSERT INTO Recipe (recipe_id, step_no, step, step_time, image_path) VALUES (6,2,'Add the chicken and sprinkle with the garlic salt and black pepper.',1,'chicken_stew_1_fry')");
+        db.execSQL("INSERT INTO Recipe (recipe_id, step_no, step, step_time, image_path) VALUES (6,3,'Cook the chicken till most of the moisture has cooked off.',5,'chicken_stew_2_cook_chicken')");
+        db.execSQL("INSERT INTO Recipe (recipe_id, step_no, step, step_time, image_path) VALUES (6,4,'Then add the cans of chicken broth to the pan.',1,'chicken_stew_3_add_broth')");
+        db.execSQL("INSERT INTO Recipe (recipe_id, step_no, step, step_time, image_path) VALUES (6,5,'Stir in the carrots and potatoes',2,'chicken_stew_4_add_potatoes_and_carrots')");
+        db.execSQL("INSERT INTO Recipe (recipe_id, step_no, step, step_time, image_path) VALUES (6,6,'Simmer for about 10 minutes and add the onions and celery.',10,NULL)");
+        db.execSQL("INSERT INTO Recipe (recipe_id, step_no, step, step_time, image_path) VALUES (6,7,'Simmer for 20 minutes more and add the spices.',20,'chicken_stew_5_add_spice_simmer')");
+        db.execSQL("INSERT INTO Recipe (recipe_id, step_no, step, step_time, image_path) VALUES (6,8,'Simmer for another 10 minutes and serve hot.',10,'chicken_stew_6_final')");
+        db.execSQL("INSERT INTO Recipe (recipe_id, step_no, step, step_time, image_path) VALUES (7,1,'Wash the chicken breast then add paprika, chicken spices, salt and pepper and squeeze a lemon',5,'paprika_chicken_1_add_paprikaandmasala')");
+        db.execSQL("INSERT INTO Recipe (recipe_id, step_no, step, step_time, image_path) VALUES (7,2,'In a non-stick pan 1TB olive oil then add the chicken and fry',5,NULL)");
+        db.execSQL("INSERT INTO Recipe (recipe_id, step_no, step, step_time, image_path) VALUES (7,3,'Done. Serve with wholegrain pasta for a healthy meal',1,'paprika_chicken_2_add_pasta_final')");
+        db.execSQL("INSERT INTO Recipe (recipe_id, step_no, step, step_time, image_path) VALUES (10,1,'Heat a large nonstick skillet over medium-low heat. Coat pan with cooking spray. Add 1 cup onion and garlic; cook for 10 minutes or until tender and golden brown, stirring occasionally',10,'grilled_cheese_sandwich_1_fry_onion')");
+        db.execSQL("INSERT INTO Recipe (recipe_id, step_no, step, step_time, image_path) VALUES (10,2,'Sprinkle 2 tablespoons cheese over each of 4 bread slices. Top each slice with 1/2 cup spinach, 2 tomato slices, 2 tablespoons onion mixture, and 1 1/2 bacon slices. Sprinkle each with 2 tablespoons cheese; top with the remaining 4 bread slices.',5,'grilled_cheese_sandwich_2_top_bread')");
+        db.execSQL("INSERT INTO Recipe (recipe_id, step_no, step, step_time, image_path) VALUES (10,3,'Heat skillet over medium heat. Coat pan with cooking spray. Place sandwiches in pan, and cook for 3 minutes on each side or until golden brown and cheese melts.',3,'grilled_cheese_sandwich_3_final')");
+        db.execSQL("INSERT INTO Recipe (recipe_id, step_no, step, step_time, image_path) VALUES (1,1,'Cube chicken and brown in a large sauce pan with seasonings and oil',10,'chicken_pasta_1_cube_chicken')");
+        db.execSQL("INSERT INTO Recipe (recipe_id, step_no, step, step_time, image_path) VALUES (1,2,'Cook pasta until soft and add frozen spinach. Boil until spinach thaws',10,NULL)");
+        db.execSQL("INSERT INTO Recipe (recipe_id, step_no, step, step_time, image_path) VALUES (1,3,'Drain pasta and add to pan with pasta sauce and chicken. Stir and let simmer about 5 mins',5,'chicken_pasta_2_add')");
+        db.execSQL("INSERT INTO Recipe (recipe_id, step_no, step, step_time, image_path) VALUES (1,4,'Top with cheese and serve warm.',1,'chicken_pasta_3_final')");
+        db.execSQL("INSERT INTO Recipe (recipe_id, step_no, step, step_time, image_path) VALUES (2,1,'In a large skillet over medium heat begin to cook and break down Italian sausage until no longer pink and cooked through 3/4 ways, drain remaining fat',10,'skillet_lasagna_1_cook_italian_suasage')");
+        db.execSQL("INSERT INTO Recipe (recipe_id, step_no, step, step_time, image_path) VALUES (2,2,'While sausage is cooking, in a medium bowl mix together the ricotta cheese, 1/4 Parmesan cheese and 1/2 cup mozzarella cheese and add salt, pepper and basil to taste.',2,'skillet_lasagna_2_mix_cheese')");
+        db.execSQL("INSERT INTO Recipe (recipe_id, step_no, step, step_time, image_path) VALUES (2,3,'Once sausage is almost cooked throughly add half of the pasta sauce',2,'skillet_lasagna_3_add_pasta_sauce')");
+        db.execSQL("INSERT INTO Recipe (recipe_id, step_no, step, step_time, image_path) VALUES (2,4,'Cover the sauce mixture with 4 lasagna noodles, breaking noodles to fit pan',2,'skillet_lasagna_4_cover_with_lasagna')");
+        db.execSQL("INSERT INTO Recipe (recipe_id, step_no, step, step_time, image_path) VALUES (2,5,'Spread cheese mixture evenly over noddles',1,NULL)");
+        db.execSQL("INSERT INTO Recipe (recipe_id, step_no, step, step_time, image_path) VALUES (2,6,'Place 4 more noodles over cheese mixture, breaking the noodles to fit the pan',1,NULL)");
+        db.execSQL("INSERT INTO Recipe (recipe_id, step_no, step, step_time, image_path) VALUES (2,7,'Pour remaining pasta sauce over noodles and top with the rest of the shredded Parmesan and shredded mozzarella cheese''Place 4 more noodles over cheese mixture, breaking the noodles to fit the pan',2,'skillet_lasagna_5_more_pasta_and_cheese')");
+        db.execSQL("INSERT INTO Recipe (recipe_id, step_no, step, step_time, image_path) VALUES (2,8,'Cover skillet and simmer over medium low heat until noodles are tender, about 20-25 minutes''Pour remaining pasta sauce over noodles and top with the rest of the shredded Parmesan and shredded mozzarella cheese''Place 4 more noodles over cheese mixture, breaking the noodles to fit the pan',25,'skillet_lasagna_6_final')");
+        db.execSQL("INSERT INTO Recipe (recipe_id, step_no, step, step_time, image_path) VALUES (3,1,'Coat pan with oil (I use grape seed oil). Saute chopped onion over medium heat until slightly brown.',6,NULL)");
+        db.execSQL("INSERT INTO Recipe (recipe_id, step_no, step, step_time, image_path) VALUES (3,2,'Add corn to pan, cook until corn is no longer frozen.',3,'taco_bowl_1_add_ingredients')");
+        db.execSQL("INSERT INTO Recipe (recipe_id, step_no, step, step_time, image_path) VALUES (3,3,'Add drained and rinsed beans to pan. Stirring occasionally.',10,'taco_bowl_2_stir')");
+        db.execSQL("INSERT INTO Recipe (recipe_id, step_no, step, step_time, image_path) VALUES (3,4,'Add spices to taste.',3,NULL)");
+        db.execSQL("INSERT INTO Recipe (recipe_id, step_no, step, step_time, image_path) VALUES (3,5,'Add cooked brown rice to pan. Mix thoroughly. Cook until everything is heated through.',5,NULL)");
+        db.execSQL("INSERT INTO Recipe (recipe_id, step_no, step, step_time, image_path) VALUES (3,6,'Spoon rice, beans, corn, and onion mixture into bowls.',2,'taco_bowl_3_add_cooked_rice_stir')");
+        db.execSQL("INSERT INTO Recipe (recipe_id, step_no, step, step_time, image_path) VALUES (3,7,'Serve with blue corn tortilla chips, guacamole, and salsa.',1,'taco_bowl_4_final')");
+
+
 
 
     }
@@ -376,6 +493,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + RECIPE_TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + RECIPE_MASTER_TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + RECIPE_CATEGORY_TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + RECIPE_INGREDIENT_CREATE_QUERY);
         onCreate(db);
     }
 }

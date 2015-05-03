@@ -1,7 +1,6 @@
 package edu.tamu.cs.success.srinath.michelinchef.fragments;
 
 import android.app.Activity;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -14,7 +13,10 @@ import android.widget.Toast;
 import java.util.List;
 
 import edu.tamu.cs.success.smit.michelinchef.DatabaseHelper;
-import edu.tamu.cs.success.srinath.michelinchef.MainActivity;
+
+
+import edu.tamu.cs.success.srinath.michelinchef.activities.MainActivity;
+
 import edu.tamu.cs.success.srinath.michelinchef.R;
 import edu.tamu.cs.success.srinath.michelinchef.adapters.RecipeGridAdapter;
 
