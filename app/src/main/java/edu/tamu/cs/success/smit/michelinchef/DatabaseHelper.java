@@ -3,13 +3,17 @@ package edu.tamu.cs.success.smit.michelinchef;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.database.Cursor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Smit on 4/28/2015.
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "MichelinCook.db";
-
+    public SQLiteDatabase db;
     // Table Cooking_Category
     public static final String COOKING_CATEGORY_TABLE_NAME = "Cooking_Category";
     public static final String COOKING_CATEGORY_COL_1 = "cook_id";
@@ -87,7 +91,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
-        SQLiteDatabase db = this.getWritableDatabase();
+        db = this.getWritableDatabase();
     }
 
     @Override
@@ -339,6 +343,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(" INSERT INTO Recipe_Category (recipe_id, cook_id, region_id, other_id) VALUES (34,4,null,null)");
 
 
+
+    }
+
+    public List GetQuickAndEasyRecipes()
+    {
+         List QuickandEasyTitles = new ArrayList();
+
+        Cursor c =
+                db.rawQuery("SELECT c.name FROM Other_Category a, Recipe_Category b, Recipe_Master c WHERE a.name = 'Quick & Easy' AND a.other_id = b.other_id AND b.recipe_id = c.recipe_id",null);
+        if(c!=null)
+        {
+            if(c.moveToFirst())
+            {
+                do {
+                    String recipename = c.getString(0);
+                    QuickandEasyTitles.add(recipename);
+                }while (c.moveToNext());
+            }
+        }
+        return QuickandEasyTitles;
 
     }
 

@@ -11,6 +11,9 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
+import java.util.List;
+
+import edu.tamu.cs.success.smit.michelinchef.DatabaseHelper;
 import edu.tamu.cs.success.srinath.michelinchef.MainActivity;
 import edu.tamu.cs.success.srinath.michelinchef.R;
 import edu.tamu.cs.success.srinath.michelinchef.adapters.RecipeGridAdapter;
@@ -28,14 +31,7 @@ public class QuickEasyFragment extends Fragment {
      */
     private static final String ARG_SECTION_NUMBER = "section_number";
     private static final String TAG = "QuickEasyFragment";
-    private String[] textOfImages = {
-            "Burger",
-            "Salad",
-            "Pasta",
-            "Noodles",
-            "Boiled Egg",
-            "Grilled meat"
-    };
+    private String[] textOfImages;
     private int[] images = {
             R.drawable.cuisine_indian,
             R.drawable.cuisine_chinese,
@@ -51,6 +47,7 @@ public class QuickEasyFragment extends Fragment {
      */
     public static QuickEasyFragment newInstance(int sectionNumber) {
         QuickEasyFragment fragment = new QuickEasyFragment();
+
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
@@ -63,6 +60,13 @@ public class QuickEasyFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        DatabaseHelper dbHelper = new DatabaseHelper(this.getActivity());
+        List temp = dbHelper.GetQuickAndEasyRecipes();
+        textOfImages = new String[temp.size()];
+        for(int i=0;i<temp.size();i++) {
+            textOfImages[i] = temp.get(i).toString();
+        }
+
         View rootView = inflater.inflate(R.layout.fragment_quick_easy, container, false);
         GridView gridView = (GridView) rootView.findViewById(R.id.hrGridView);
         RecipeGridAdapter recipeGridAdapter = new RecipeGridAdapter(

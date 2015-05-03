@@ -10,6 +10,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 
 import edu.tamu.cs.success.srinath.michelinchef.MainActivity;
 import edu.tamu.cs.success.srinath.michelinchef.R;
@@ -28,6 +31,11 @@ public class HealthyRecipesFragment extends Fragment {
      */
     private static final String ARG_SECTION_NUMBER = "section_number";
     private static final String TAG = "HealthyRecipesFragment";
+    public static final String DATABASE_NAME = "MichelinCook.db";
+
+    SQLiteDatabase db = SQLiteDatabase.openDatabase(DATABASE_NAME, null, 1);
+    //db.execSQL("SELECT c.name FROM Other_Category a, Recipe_Category b, Recipe_Master c WHERE a.name = 'Quick & Easy' AND a.other_id = b.other_id AND b.recipe_id = c.recipe_id");
+
     private String[] textOfImages = {
             "Indian",
             "Chinese",
