@@ -10,6 +10,9 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
+import java.util.List;
+
+import edu.tamu.cs.success.smit.michelinchef.DatabaseHelper;
 import edu.tamu.cs.success.srinath.michelinchef.activities.MainActivity;
 import edu.tamu.cs.success.srinath.michelinchef.R;
 import edu.tamu.cs.success.srinath.michelinchef.adapters.RecipeGridAdapter;
@@ -27,22 +30,13 @@ public class CheapEatsFragment extends Fragment {
      */
     private static final String ARG_SECTION_NUMBER = "section_number";
     private static final String TAG = "CheapEatsFragment";
-    private String[] textOfImages = {
-            "Soda",
-            "Coke",
-            "Milk",
-            "Pepsi",
-            "Chilled beer",
-            "Iced tea"
-    };
+    private String[] textOfImages;
     private int[] images = {
             R.drawable.cuisine_indian,
             R.drawable.cuisine_chinese,
             R.drawable.cuisine_thai,
             R.drawable.cuisine_italian,
-            R.drawable.cuisine_american,
-            R.drawable.cuisine_mexican
-    };
+                };
 
     /**
      * Returns a new instance of this fragment for the given section
@@ -62,6 +56,19 @@ public class CheapEatsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        DatabaseHelper dbHelper = new DatabaseHelper(this.getActivity());
+        List tempRecipeNames = dbHelper.GetCheapEatsRecipeNames();
+        List tempRecipeImages = dbHelper.GetCheapEatsRecipeImages();
+        textOfImages = new String[tempRecipeNames.size()];
+        String[] ImagesString = new String[tempRecipeImages.size()];
+        images = new int[tempRecipeImages.size()];
+        for(int i=0;i<tempRecipeImages.size();i++) {
+            ImagesString[i] = tempRecipeImages.get(i).toString();
+            images[i]=getResources().getIdentifier(ImagesString[i] , "drawable", getActivity().getApplicationContext().getPackageName());
+        }
+        for(int i=0;i<tempRecipeNames.size();i++) {
+            textOfImages[i] = tempRecipeNames.get(i).toString();
+        }
         View rootView = inflater.inflate(R.layout.fragment_cheap_eats, container, false);
         GridView gridView = (GridView) rootView.findViewById(R.id.hrGridView);
         RecipeGridAdapter recipeGridAdapter = new RecipeGridAdapter(

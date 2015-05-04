@@ -10,6 +10,9 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
+import java.util.List;
+
+import edu.tamu.cs.success.smit.michelinchef.DatabaseHelper;
 import edu.tamu.cs.success.srinath.michelinchef.activities.MainActivity;
 import edu.tamu.cs.success.srinath.michelinchef.R;
 import edu.tamu.cs.success.srinath.michelinchef.adapters.RecipeGridAdapter;
@@ -27,14 +30,12 @@ public class HealthyRecipesFragment extends Fragment {
      */
     private static final String ARG_SECTION_NUMBER = "section_number";
     private static final String TAG = "HealthyRecipesFragment";
-    private String[] textOfImages = {
-            "Indian",
-            "Chinese",
-            "Thai",
-            "Italian",
-            "US",
-            "Mexican"
-    };
+    public static final String DATABASE_NAME = "MichelinCook.db";
+
+
+
+
+    private String[] textOfImages;
     private int[] images = {
             R.drawable.cuisine_indian,
             R.drawable.cuisine_chinese,
@@ -62,6 +63,19 @@ public class HealthyRecipesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        DatabaseHelper dbHelper = new DatabaseHelper(this.getActivity());
+        List tempRecipeNames = dbHelper.GetHealthyRecipesNames();
+        List tempRecipeImages = dbHelper.GetHealthyRecipesImages();
+        textOfImages = new String[tempRecipeNames.size()];
+        String[] ImagesString = new String[tempRecipeImages.size()];
+        images = new int[tempRecipeImages.size()];
+        for(int i=0;i<tempRecipeImages.size();i++) {
+            ImagesString[i] = tempRecipeImages.get(i).toString();
+            images[i]=getResources().getIdentifier(ImagesString[i] , "drawable", getActivity().getApplicationContext().getPackageName());
+        }
+        for(int i=0;i<tempRecipeNames.size();i++) {
+            textOfImages[i] = tempRecipeNames.get(i).toString();
+        }
         View rootView = inflater.inflate(R.layout.fragment_healthy_recipes, container, false);
         GridView gridView = (GridView) rootView.findViewById(R.id.hrGridView);
         RecipeGridAdapter recipeGridAdapter = new RecipeGridAdapter(
