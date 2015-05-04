@@ -53,10 +53,17 @@ public class CheapEatsFragment extends Fragment {
     public CheapEatsFragment() {
     }
 
+   public void search()
+   {
+
+   }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         DatabaseHelper dbHelper = new DatabaseHelper(this.getActivity());
+        String[ ] temp ={"cheese"};
+        //dbHelper.GetSearchRecipeNames(temp);
         List tempRecipeNames = dbHelper.GetCheapEatsRecipeNames();
         List tempRecipeImages = dbHelper.GetCheapEatsRecipeImages();
         textOfImages = new String[tempRecipeNames.size()];

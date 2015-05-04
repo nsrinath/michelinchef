@@ -592,6 +592,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+
+    public List GetSearchRecipeNames(String[] string)
+    {
+        List recipeTitles = new ArrayList();
+
+        Cursor c =
+                db.rawQuery("select name from Recipe_Master WHERE name like '%?%';",string);
+        if(c!=null)
+        {
+            if(c.moveToFirst())
+            {
+                do {
+                    String recipename = c.getString(0);
+                    recipeTitles.add(recipename);
+                }while (c.moveToNext());
+            }
+        }
+        return recipeTitles;
+
+    }
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
