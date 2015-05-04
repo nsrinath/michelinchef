@@ -593,12 +593,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public List GetSearchRecipeNames(String[] string)
+    public List GetSearchRecipeNames(String string)
     {
         List recipeTitles = new ArrayList();
 
+        String temp =  "%"+string+"%";
         Cursor c =
-                db.rawQuery("select name from Recipe_Master WHERE name like '%?%';",string);
+                db.rawQuery("SELECT name FROM Recipe_Master Where name like '"+temp+"' ;",null);
         if(c!=null)
         {
             if(c.moveToFirst())

@@ -62,8 +62,8 @@ public class CheapEatsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         DatabaseHelper dbHelper = new DatabaseHelper(this.getActivity());
-        String[ ] temp ={"cheese"};
-        //dbHelper.GetSearchRecipeNames(temp);
+        String temp ="cheese";
+        dbHelper.GetSearchRecipeNames(temp);
         List tempRecipeNames = dbHelper.GetCheapEatsRecipeNames();
         List tempRecipeImages = dbHelper.GetCheapEatsRecipeImages();
         textOfImages = new String[tempRecipeNames.size()];
@@ -100,5 +100,4 @@ public class CheapEatsFragment extends Fragment {
         ((MainActivity) activity).onSectionAttached(
                 getArguments().getInt(ARG_SECTION_NUMBER));
     }
-
 }
