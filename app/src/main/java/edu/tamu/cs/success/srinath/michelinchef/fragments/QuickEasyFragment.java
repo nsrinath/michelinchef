@@ -34,14 +34,7 @@ public class QuickEasyFragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
     private static final String TAG = "QuickEasyFragment";
     private String[] textOfImages;
-    private int[] images = {
-            R.drawable.cuisine_indian,
-            R.drawable.cuisine_chinese,
-            R.drawable.cuisine_thai,
-            R.drawable.cuisine_italian,
-            R.drawable.cuisine_american,
-            R.drawable.cuisine_mexican
-    };
+    private int[] images;
 
     /**
      * Returns a new instance of this fragment for the given section
@@ -63,10 +56,17 @@ public class QuickEasyFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         DatabaseHelper dbHelper = new DatabaseHelper(this.getActivity());
-        List temp = dbHelper.GetQuickAndEasyRecipes();
-        textOfImages = new String[temp.size()];
-        for(int i=0;i<temp.size();i++) {
-            textOfImages[i] = temp.get(i).toString();
+        List tempRecipeNames = dbHelper.GetQuickAndEasyRecipeNames();
+        List tempRecipeImages = dbHelper.GetQuickAndEasyRecipesImages();
+        textOfImages = new String[tempRecipeNames.size()];
+        String[] ImagesString = new String[tempRecipeImages.size()];
+        images = new int[tempRecipeImages.size()];
+        for(int i=0;i<tempRecipeImages.size();i++) {
+            ImagesString[i] = tempRecipeImages.get(i).toString();
+            images[i]=getResources().getIdentifier(ImagesString[i] , "drawable", getActivity().getApplicationContext().getPackageName());
+        }
+        for(int i=0;i<tempRecipeNames.size();i++) {
+            textOfImages[i] = tempRecipeNames.get(i).toString();
         }
 
         View rootView = inflater.inflate(R.layout.fragment_quick_easy, container, false);

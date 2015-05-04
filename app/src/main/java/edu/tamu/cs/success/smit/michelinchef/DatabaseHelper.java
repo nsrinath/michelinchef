@@ -77,8 +77,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String RECIPE_MASTER_CREATE_QUERY = "Create table "
             + RECIPE_MASTER_TABLE_NAME + " ( "
-            + RECIPE_COL_1 +" integer PRIMARY KEY autoincrement, "
-            + RECIPE_COL_2 + " text not null)";
+            + RECIPE_COL_1 + " integer PRIMARY KEY autoincrement, "
+            + RECIPE_COL_2 + " text not null, "
+            + RECIPE_COL_6 + " text )";
+
+
 
     //Table Recipe_Categories
     public static final String RECIPE_CATEGORY_TABLE_NAME = "Recipe_Category";
@@ -111,7 +114,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     public DatabaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, 1);
+        super(context, DATABASE_NAME, null, 2);
         db = this.getWritableDatabase();
     }
 
@@ -293,40 +296,41 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO Ingredients (name, unit) VALUES ('Bread', 'slice')");
 
         //Inserting Values in Recipe_Master Table
-        db.execSQL(" INSERT INTO Recipe_Master (name) VALUES ('Creamy Spinach and Chicken Pasta')");
-        db.execSQL(" INSERT INTO Recipe_Master (name) VALUES ('Skillet Lasagna')");
-        db.execSQL(" INSERT INTO Recipe_Master (name) VALUES ('Taco Bowl - Vegan')");
-        db.execSQL(" INSERT INTO Recipe_Master (name) VALUES ('Salsa Ramen Noodles')");
-        db.execSQL(" INSERT INTO Recipe_Master (name) VALUES ('Rajma - Red Kidney Bean Indian Curry')");
-        db.execSQL(" INSERT INTO Recipe_Master (name) VALUES ('Chicken Stew')");
-        db.execSQL(" INSERT INTO Recipe_Master (name) VALUES ('Paprika Chicken')");
-        db.execSQL(" INSERT INTO Recipe_Master (name) VALUES ('Thai Salmon Rice')");
-        db.execSQL(" INSERT INTO Recipe_Master (name) VALUES ('Hangover Frittata (Omelet)')");
-        db.execSQL(" INSERT INTO Recipe_Master (name) VALUES ('Grown-Up Grilled Cheese Sandwiches')");
-        db.execSQL(" INSERT INTO Recipe_Master (name) VALUES ('Big-Batch Veggie Chili')");
-        db.execSQL(" INSERT INTO Recipe_Master (name) VALUES ('Mac & Cheese Bacon wrapped Hot Dogs')");
-        db.execSQL(" INSERT INTO Recipe_Master (name) VALUES ('BBQ Cheesy Quesadilla')");
-        db.execSQL(" INSERT INTO Recipe_Master (name) VALUES ('Ranch Chicken')");
-        db.execSQL(" INSERT INTO Recipe_Master (name) VALUES ('3 Cheese Italian Burger')");
-        db.execSQL(" INSERT INTO Recipe_Master (name) VALUES ('Paneer Tikka ( Indian) ( cottage cheese)')");
-        db.execSQL(" INSERT INTO Recipe_Master (name) VALUES ('Indian Chicken Tikka')");
-        db.execSQL(" INSERT INTO Recipe_Master (name) VALUES ('Grilled Naan Filled with Herbs and Cheese')");
-        db.execSQL(" INSERT INTO Recipe_Master (name) VALUES ('Corn and Potato Kebabs')");
-        db.execSQL(" INSERT INTO Recipe_Master (name) VALUES ('Hara Bhara Kebab')");
-        db.execSQL(" INSERT INTO Recipe_Master (name) VALUES ('Easy Enchiladas')");
-        db.execSQL(" INSERT INTO Recipe_Master (name) VALUES ('5 Minute Chocolate Mug Cake')");
-        db.execSQL(" INSERT INTO Recipe_Master (name) VALUES ('Microwave mashed potatoes')");
-        db.execSQL(" INSERT INTO Recipe_Master (name) VALUES ('Burrito Casserole')");
-        db.execSQL(" INSERT INTO Recipe_Master (name) VALUES ('Baingan Bhurta')");
-        db.execSQL(" INSERT INTO Recipe_Master (name) VALUES ('Baked Beans with Buttered Rice')");
-        db.execSQL(" INSERT INTO Recipe_Master (name) VALUES ('Carrot Halwa')");
-        db.execSQL(" INSERT INTO Recipe_Master (name) VALUES ('Roast Chicken with Potatoes and Butternut Squash')");
-        db.execSQL(" INSERT INTO Recipe_Master (name) VALUES ('Mexicali Meatless Tostadas')");
-        db.execSQL(" INSERT INTO Recipe_Master (name) VALUES ('Turkey Wrap')");
-        db.execSQL(" INSERT INTO Recipe_Master (name) VALUES ('Pan Bagnat')");
-        db.execSQL(" INSERT INTO Recipe_Master (name) VALUES ('Mediterranean Garden Wraps')");
-        db.execSQL(" INSERT INTO Recipe_Master (name) VALUES ('Chipotle Chicken Taco Salad')");
-        db.execSQL(" INSERT INTO Recipe_Master (name) VALUES ('Apricot-Nut Turkey-Salad Sandwiches')");
+        db.execSQL(" INSERT INTO Recipe_Master (name, image_path) VALUES ('Creamy Spinach and Chicken Pasta', 'chicken_pasta_3_final')");
+        db.execSQL(" INSERT INTO Recipe_Master (name, image_path) VALUES ('Skillet Lasagna', 'skillet_lasagna_6_final')");
+        db.execSQL(" INSERT INTO Recipe_Master (name, image_path) VALUES ('Taco Bowl - Vegan', 'taco_bowl_4_final')");
+        db.execSQL(" INSERT INTO Recipe_Master (name, image_path) VALUES ('Salsa Ramen Noodles', 'salsa_ramen_noodles_final')");
+        db.execSQL(" INSERT INTO Recipe_Master (name, image_path) VALUES ('Rajma - Red Kidney Bean Indian Curry', 'rajma_7_final')");
+        db.execSQL(" INSERT INTO Recipe_Master (name, image_path) VALUES ('Chicken Stew', 'chicken_stew_6_final')");
+        db.execSQL(" INSERT INTO Recipe_Master (name, image_path) VALUES ('Paprika Chicken', 'paprika_chicken_2_add_pasta_final')");
+        db.execSQL(" INSERT INTO Recipe_Master (name, image_path) VALUES ('Thai Salmon Rice', 'thai_salmon_rice_5_final')");
+        db.execSQL(" INSERT INTO Recipe_Master (name, image_path) VALUES ('Hangover Frittata (Omelet)', 'hangover_frittata_4_final')");
+        db.execSQL(" INSERT INTO Recipe_Master (name, image_path) VALUES ('Grown-Up Grilled Cheese Sandwiches', 'grilled_cheese_sandwich_3_final')");
+        db.execSQL(" INSERT INTO Recipe_Master (name, image_path) VALUES ('Big-Batch Veggie Chili', 'big_batch_veg_chili_final')");
+        db.execSQL(" INSERT INTO Recipe_Master (name, image_path) VALUES ('Mac & Cheese Bacon wrapped Hot Dogs', 'mac_and_cheese_bacon_wrapped_hotdogs_4_final')");
+        db.execSQL(" INSERT INTO Recipe_Master (name, image_path) VALUES ('BBQ Cheesy Quesadilla', 'bbq_cheesy_quesadilla_2_grill')");
+        db.execSQL(" INSERT INTO Recipe_Master (name, image_path) VALUES ('Ranch Chicken', 'ranch_chicken_4_final')");
+        db.execSQL(" INSERT INTO Recipe_Master (name, image_path) VALUES ('3 Cheese Italian Burger', 'cheese_italian_burger_5_displaypic')");
+        db.execSQL(" INSERT INTO Recipe_Master (name, image_path) VALUES ('Paneer Tikka ( Indian) ( cottage cheese)', 'paneer_tikka_3_add_capsicum_grill')");
+        db.execSQL(" INSERT INTO Recipe_Master (name, image_path) VALUES ('Indian Chicken Tikka', 'indian_chicken_tikka_final')");
+        db.execSQL(" INSERT INTO Recipe_Master (name, image_path) VALUES ('Grilled Naan Filled with Herbs and Cheese', 'grilled_naan_filled_with_herbs_and_cheese_4_final')");
+        db.execSQL(" INSERT INTO Recipe_Master (name, image_path) VALUES ('Corn and Potato Kebabs', 'corn_and_potato_kebabs_3_serve')");
+        db.execSQL(" INSERT INTO Recipe_Master (name, image_path) VALUES ('Hara Bhara Kebab', 'harabhara_kebab_4_final')");
+        db.execSQL(" INSERT INTO Recipe_Master (name, image_path) VALUES ('Easy Enchiladas', 'easy_enchiladas_3_spread_tomato_sauce_cheese')");
+        db.execSQL(" INSERT INTO Recipe_Master (name, image_path) VALUES ('5 Minute Chocolate Mug Cake', 'chocolate_mug_cake_1_final')");
+        db.execSQL(" INSERT INTO Recipe_Master (name, image_path) VALUES ('Microwave mashed potatoes', 'mashed_potatoes_3_add_masala')");
+        db.execSQL(" INSERT INTO Recipe_Master (name, image_path) VALUES ('Burrito Casserole', 'burrito_casserole_3_displaypic')");
+        db.execSQL(" INSERT INTO Recipe_Master (name, image_path) VALUES ('Baingan Bhurta', 'baingan_bhurtha_4_final')");
+        db.execSQL(" INSERT INTO Recipe_Master (name, image_path) VALUES ('Baked Beans with Buttered Rice', 'buttered_rice_and_beans_4_final')");
+        db.execSQL(" INSERT INTO Recipe_Master (name, image_path) VALUES ('Carrot Halwa', 'carrot_halwa_3_final')");
+        db.execSQL(" INSERT INTO Recipe_Master (name, image_path) VALUES ('Roast Chicken with Potatoes and Butternut Squash', 'roast_chicken_1_final')");
+        db.execSQL(" INSERT INTO Recipe_Master (name, image_path) VALUES ('Mexicali Meatless Tostadas', 'mexicali_meatless_tostadas_4_final')");
+        db.execSQL(" INSERT INTO Recipe_Master (name, image_path) VALUES ('Turkey Wrap', 'turkey_wrap_3_final')");
+        db.execSQL(" INSERT INTO Recipe_Master (name, image_path) VALUES ('Pan Bagnat', 'pan_bagnat_1_final')");
+        db.execSQL(" INSERT INTO Recipe_Master (name, image_path) VALUES ('Mediterranean Garden Wraps', 'mediteranean_garden_wrap_1_final')");
+        db.execSQL(" INSERT INTO Recipe_Master (name, image_path) VALUES ('Chipotle Chicken Taco Salad', 'chipotle_chicken_taco_salad_2_final')");
+        db.execSQL(" INSERT INTO Recipe_Master (name, image_path) VALUES ('Apricot-Nut Turkey-Salad Sandwiches', 'apricot_sandwich_2_final')");
+
 
         //Inserting Values in Recipe_Category Table
         db.execSQL(" INSERT INTO Recipe_Category (recipe_id, cook_id, region_id, other_id) VALUES (1,1,3,null)");
@@ -463,7 +467,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public List GetQuickAndEasyRecipes()
+
+    public List GetQuickAndEasyRecipeNames()
     {
          List QuickandEasyTitles = new ArrayList();
 
@@ -483,6 +488,110 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    public List GetQuickAndEasyRecipesImages()
+    {
+        List QuickandEasyImages = new ArrayList();
+
+        Cursor c =
+                db.rawQuery("SELECT c.image_path FROM Other_Category a, Recipe_Category b, Recipe_Master c WHERE a.name = 'Quick & Easy' AND a.other_id = b.other_id AND b.recipe_id = c.recipe_id",null);
+        //select name, image_path from Recipe_Master WHERE name like '%string%';
+        if(c!=null)
+        {
+            if(c.moveToFirst())
+            {
+                do {
+                    String recipename = c.getString(0);
+                    QuickandEasyImages.add(recipename);
+
+                }while (c.moveToNext());
+            }
+        }
+        return QuickandEasyImages;
+
+    }
+
+    public List GetCheapEatsRecipeNames()
+    {
+        List CheapEatsTitles = new ArrayList();
+
+        Cursor c =
+                db.rawQuery("SELECT c.name FROM Other_Category a, Recipe_Category b, Recipe_Master c WHERE a.name = 'Cheap' AND a.other_id = b.other_id AND b.recipe_id = c.recipe_id",null);
+        if(c!=null)
+        {
+            if(c.moveToFirst())
+            {
+                do {
+                    String recipename = c.getString(0);
+                    CheapEatsTitles.add(recipename);
+                }while (c.moveToNext());
+            }
+        }
+        return CheapEatsTitles;
+
+    }
+
+    public List GetCheapEatsRecipeImages()
+    {
+        List CheapEatsTitles = new ArrayList();
+
+        Cursor c =
+                db.rawQuery("SELECT c.image_path FROM Other_Category a, Recipe_Category b, Recipe_Master c WHERE a.name = 'Cheap' AND a.other_id = b.other_id AND b.recipe_id = c.recipe_id",null);
+        if(c!=null)
+        {
+            if(c.moveToFirst())
+            {
+                do {
+                    String recipename = c.getString(0);
+                    CheapEatsTitles.add(recipename);
+                }while (c.moveToNext());
+            }
+        }
+        return CheapEatsTitles;
+
+    }
+
+
+    public List GetHealthyRecipesNames()
+    {
+        List HealthyRecipeTitles = new ArrayList();
+
+        Cursor c =
+                db.rawQuery("SELECT c.name FROM Other_Category a, Recipe_Category b, Recipe_Master c WHERE a.name = 'Healthy' AND a.other_id = b.other_id AND b.recipe_id = c.recipe_id",null);
+        if(c!=null)
+        {
+            if(c.moveToFirst())
+            {
+                do {
+                    String recipename = c.getString(0);
+                    HealthyRecipeTitles.add(recipename);
+                }while (c.moveToNext());
+            }
+        }
+        return HealthyRecipeTitles;
+
+    }
+
+
+    public List GetHealthyRecipesImages()
+    {
+        List HealthyRecipeTitles = new ArrayList();
+
+        Cursor c =
+                db.rawQuery("SELECT c.image_path FROM Other_Category a, Recipe_Category b, Recipe_Master c WHERE a.name = 'Healthy' AND a.other_id = b.other_id AND b.recipe_id = c.recipe_id",null);
+        if(c!=null)
+        {
+            if(c.moveToFirst())
+            {
+                do {
+                    String recipename = c.getString(0);
+                    HealthyRecipeTitles.add(recipename);
+                }while (c.moveToNext());
+            }
+        }
+        return HealthyRecipeTitles;
+
+    }
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
@@ -493,7 +602,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + RECIPE_TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + RECIPE_MASTER_TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + RECIPE_CATEGORY_TABLE_NAME);
-        db.execSQL("DROP TABLE IF EXISTS " + RECIPE_INGREDIENT_CREATE_QUERY);
+        db.execSQL("DROP TABLE IF EXISTS " + RECIPE_INGREDIENT_TABLE_NAME);
         onCreate(db);
     }
 }
