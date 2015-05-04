@@ -21,9 +21,11 @@
 
     <string name="title_digital_card">DigitalCard</string>
     <string name="top_stories_fragment">Top Stories</string>
-    <string name="sample_timer">04:30</string>
+    <string name="null_timer">--:--</string>
     <string name="pause_button_text">Pause</string>
+    <string name="start_button_text">Start</string>
     <string name="high_stove_heat">HIGH HEAT</string>
     <string name="sample_recipe_step">Pour 150 ml of water in a kettle</string>
+    <string name="resume_button_text">Resume</string>
 
 </resources>
