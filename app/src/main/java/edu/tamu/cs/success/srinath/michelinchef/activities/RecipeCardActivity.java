@@ -133,7 +133,10 @@ public class RecipeCardActivity extends Activity{
         String[] ImagesString = new String[tempRecipeImages.size()];
         int[] images = new int[tempRecipeImages.size()];
         for(int i=0;i<tempRecipeImages.size();i++) {
+            if(tempRecipeImages.get(i) != null)
             ImagesString[i] = tempRecipeImages.get(i).toString();
+            else
+                ImagesString[i] = "cuisine_american";
             images[i]=getResources().getIdentifier(ImagesString[i], "drawable", getApplicationContext().getPackageName());
         }
         long[] time = new long[tempRecipeTimes.size()];
@@ -141,6 +144,7 @@ public class RecipeCardActivity extends Activity{
         {
          time[i]=  Integer.parseInt(tempRecipeTimes.get(i).toString()) * 60000;
         }
+
 
         for(int i = 0;i< tempRecipeImages.size();i++)
             aRecipe.add(new RecipeStep(tempRecipeSteps.get(i).toString(), images[i], time[i]));

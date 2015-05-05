@@ -462,6 +462,34 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO Recipe (recipe_id, step_no, step, step_time, image_path) VALUES (3,6,'Spoon rice, beans, corn, and onion mixture into bowls.',2,'taco_bowl_3_add_cooked_rice_stir')");
         db.execSQL("INSERT INTO Recipe (recipe_id, step_no, step, step_time, image_path) VALUES (3,7,'Serve with blue corn tortilla chips, guacamole, and salsa.',1,'taco_bowl_4_final')");
 
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (11,67,2,NULL)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (11,35,1,NULL)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (11,6,1,NULL)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (11,68,1,NULL)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (11,69,3.7,NULL)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (11,70,3,NULL)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (11,28,10,NULL)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (11,22,2,NULL)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (11,73,1,NULL)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (11,74,1,NULL)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (11,21,1,NULL)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (8,35,1,NULL)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (8,53,2,NULL)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (8,54,80,NULL)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (8,55,100,NULL)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (8,56,300,NULL)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (8,57,150,NULL)");
+        db.execSQL("INSERT INTO Recipe_Ingredients (recipe_id, ingredient_id, quantity, remarks) VALUES (8,58,200,NULL)");
+
+
+
+        db.execSQL("INSERT INTO Recipe (recipe_id, step_no, step, step_time, image_path) VALUES (11,1,'SautÃ© carrots and onion in hot oil in a 5- to 6-qt. Dutch oven over medium heat 7 minutes or until onions are translucent. Stir in half of red pepper packet from chili kit; stir in all of remaining packets. SautÃ© mixture 2 minutes. Stir in tomato sauce and next 7 ingredients.',10,NULL)");
+        db.execSQL("INSERT INTO Recipe (recipe_id, step_no, step, step_time, image_path) VALUES (11,2,'Bring to a boil; cover, reduce heat to medium low, and simmer, stirring occasionally, 30 minutes or until vegetables are tender. Serve with desired toppings.',30,'big_batch_veg_chili_final')");
+        db.execSQL("INSERT INTO Recipe (recipe_id, step_no, step, step_time, image_path) VALUES (8,1,'Spray a large lidded pan with the cooking spray and heat until hot. Add the onion and cook for 2 minutes.',3,'thai_salmon_rice_1_cook_onions')");
+        db.execSQL("INSERT INTO Recipe (recipe_id, step_no, step, step_time, image_path) VALUES (8,2,'Stir in the Thai 7 spice and cook for a minute before adding the rice and stirring to coat.',1,'thai_salmon_rice_2_stir_thai_7_spice')");
+        db.execSQL("INSERT INTO Recipe (recipe_id, step_no, step, step_time, image_path) VALUES (8,3,'Pour over the coconut milk and stock, bring to the boil, cover and simmer for 2 minutes.',2,'thai_salmon_rice_3_pour_coconut_milk')");
+        db.execSQL("INSERT INTO Recipe (recipe_id, step_no, step, step_time, image_path) VALUES (8,4,'Stir in the beans and then place the salmon pieces on top of the rice. Cover and cook for 10-15 minutes until everything is cooked through.',15,'thai_salmon_rice_4_beans_and_salmon_pieces')");
+        db.execSQL("INSERT INTO Recipe (recipe_id, step_no, step, step_time, image_path) VALUES (8,5,'Serve with the coriander sprinkled on top.',1,'thai_salmon_rice_5_final')");
 
 
 
