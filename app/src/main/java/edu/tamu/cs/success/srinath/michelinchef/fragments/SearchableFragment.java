@@ -1,7 +1,6 @@
 package edu.tamu.cs.success.srinath.michelinchef.fragments;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -14,28 +13,23 @@ import android.widget.Toast;
 import java.util.List;
 
 import edu.tamu.cs.success.smit.michelinchef.DatabaseHelper;
-
-
 import edu.tamu.cs.success.srinath.michelinchef.activities.MainActivity;
-
 import edu.tamu.cs.success.srinath.michelinchef.R;
-import edu.tamu.cs.success.srinath.michelinchef.activities.RecipeReview;
 import edu.tamu.cs.success.srinath.michelinchef.adapters.RecipeGridAdapter;
 
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link edu.tamu.cs.success.srinath.michelinchef.fragments.QuickEasyFragment} factory method to
+ * Use the {@link edu.tamu.cs.success.srinath.michelinchef.fragments.SearchableFragment} factory method to
  * create an instance of this fragment.
  */
-public class QuickEasyFragment extends Fragment {
+public class SearchableFragment extends Fragment {
     /**
      * The fragment argument representing the section number for this
      * fragment.
      */
     private static final String ARG_SECTION_NUMBER = "section_number";
-    private static final String TAG = "QuickEasyFragment";
-    public static final String RECIPE_ID = "recipe_id";
+    private static final String TAG = "SearchableFragment";
     private String[] textOfImages;
     private int[] images;
 
@@ -43,25 +37,30 @@ public class QuickEasyFragment extends Fragment {
      * Returns a new instance of this fragment for the given section
      * number.
      */
-    public static QuickEasyFragment newInstance(int sectionNumber) {
-        QuickEasyFragment fragment = new QuickEasyFragment();
-
+    public static SearchableFragment newInstance(int sectionNumber) {
+        SearchableFragment fragment = new SearchableFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
         return fragment;
     }
 
-    public QuickEasyFragment() {
+    public SearchableFragment() {
+    }
+
+    public void search()
+    {
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         DatabaseHelper dbHelper = new DatabaseHelper(this.getActivity());
-        List tempRecipeNames = dbHelper.GetQuickAndEasyRecipeNames();
-        List tempRecipeImages = dbHelper.GetQuickAndEasyRecipesImages();
-        final List tempRecipeIds = dbHelper.GetCheapEatsRecipeIds();
+        String temp ="cheese";
+        dbHelper.GetSearchRecipeNames(temp);
+        List tempRecipeNames = dbHelper.GetSearchRecipeNames(temp);
+        List tempRecipeImages = dbHelper.GetSearchRecipeImages(temp);
         textOfImages = new String[tempRecipeNames.size()];
         String[] ImagesString = new String[tempRecipeImages.size()];
         images = new int[tempRecipeImages.size()];
@@ -72,8 +71,7 @@ public class QuickEasyFragment extends Fragment {
         for(int i=0;i<tempRecipeNames.size();i++) {
             textOfImages[i] = tempRecipeNames.get(i).toString();
         }
-
-        View rootView = inflater.inflate(R.layout.fragment_quick_easy, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_cheap_eats, container, false);
         GridView gridView = (GridView) rootView.findViewById(R.id.hrGridView);
         RecipeGridAdapter recipeGridAdapter = new RecipeGridAdapter(
                 getActivity().getApplicationContext(),
@@ -85,9 +83,6 @@ public class QuickEasyFragment extends Fragment {
                 Toast.makeText(getActivity().getApplicationContext(),
                         "You clicked on item " + position,
                         Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getActivity(), RecipeReview.class);
-                intent.putExtra(RECIPE_ID, tempRecipeIds.get(position).toString());
-                startActivity(intent);
             }
         });
 
@@ -100,5 +95,4 @@ public class QuickEasyFragment extends Fragment {
         ((MainActivity) activity).onSectionAttached(
                 getArguments().getInt(ARG_SECTION_NUMBER));
     }
-
 }

@@ -21,6 +21,7 @@ import edu.tamu.cs.success.srinath.michelinchef.fragments.HealthyRecipesFragment
 import edu.tamu.cs.success.srinath.michelinchef.fragments.NavigationDrawerFragment;
 import edu.tamu.cs.success.srinath.michelinchef.fragments.PlaceholderFragment;
 import edu.tamu.cs.success.srinath.michelinchef.fragments.QuickEasyFragment;
+import edu.tamu.cs.success.srinath.michelinchef.fragments.SearchableFragment;
 import edu.tamu.cs.success.srinath.michelinchef.fragments.TopStoriesFragment;
 
 

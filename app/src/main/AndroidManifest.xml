@@ -36,6 +36,10 @@
             android:name=".activities.RecipeCardActivity"
             android:label="RecipeCardActivity" >
         </activity>
+        <activity
+            android:name=".activities.RecipeReview"
+            android:label="@string/title_activity_recipe_review" >
+        </activity>
     </application>
 
 </manifest>

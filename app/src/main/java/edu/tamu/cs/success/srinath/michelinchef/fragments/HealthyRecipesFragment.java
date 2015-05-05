@@ -1,6 +1,7 @@
 package edu.tamu.cs.success.srinath.michelinchef.fragments;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import java.util.List;
 import edu.tamu.cs.success.smit.michelinchef.DatabaseHelper;
 import edu.tamu.cs.success.srinath.michelinchef.activities.MainActivity;
 import edu.tamu.cs.success.srinath.michelinchef.R;
+import edu.tamu.cs.success.srinath.michelinchef.activities.RecipeReview;
 import edu.tamu.cs.success.srinath.michelinchef.adapters.RecipeGridAdapter;
 
 
@@ -31,7 +33,7 @@ public class HealthyRecipesFragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
     private static final String TAG = "HealthyRecipesFragment";
     public static final String DATABASE_NAME = "MichelinCook.db";
-
+    public static final String RECIPE_ID = "recipe_id";
 
 
 
@@ -66,6 +68,7 @@ public class HealthyRecipesFragment extends Fragment {
         DatabaseHelper dbHelper = new DatabaseHelper(this.getActivity());
         List tempRecipeNames = dbHelper.GetHealthyRecipesNames();
         List tempRecipeImages = dbHelper.GetHealthyRecipesImages();
+        final List tempRecipeIds = dbHelper.GetHealthyRecipeIds();
         textOfImages = new String[tempRecipeNames.size()];
         String[] ImagesString = new String[tempRecipeImages.size()];
         images = new int[tempRecipeImages.size()];
@@ -88,6 +91,9 @@ public class HealthyRecipesFragment extends Fragment {
                 Toast.makeText(getActivity().getApplicationContext(),
                         "You clicked on item " + position,
                         Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), RecipeReview.class);
+                intent.putExtra(RECIPE_ID, tempRecipeIds.get(position).toString());
+                startActivity(intent);
             }
         });
 

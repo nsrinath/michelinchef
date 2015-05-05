@@ -488,6 +488,67 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    public List GetIngredientNames(String recipeID)
+    {
+        List Ingredientnames = new ArrayList();
+
+        Cursor c =
+                db.rawQuery("SELECT a.name FROM Ingredients a, Recipe_Master b, Recipe_Ingredients c WHERE a.ingredient_id = c.ingredient_id AND b.recipe_id = c.recipe_id AND b.recipe_id = "+recipeID+" ;",null);
+        if(c!=null)
+        {
+            if(c.moveToFirst())
+            {
+                do {
+                    String recipename = c.getString(0);
+                    Ingredientnames.add(recipename);
+                }while (c.moveToNext());
+            }
+        }
+        return Ingredientnames;
+
+    }
+
+    public List GetIngredientQuantities(String recipeID)
+    {
+        List IngredientQuantities = new ArrayList();
+
+        Cursor c =
+                db.rawQuery("SELECT c.quantity, a.unit FROM Ingredients a, Recipe_Master b, Recipe_Ingredients c WHERE a.ingredient_id = c.ingredient_id AND b.recipe_id = c.recipe_id AND  b.recipe_id = "+recipeID+" ;",null);
+        if(c!=null)
+        {
+            if(c.moveToFirst())
+            {
+                do {
+                    String recipename = c.getString(0);
+                    IngredientQuantities.add(recipename +" "+c.getString(1));
+                }while (c.moveToNext());
+            }
+        }
+        return IngredientQuantities;
+
+    }
+
+    public String GetIngredientImage(String recipeID)
+    {
+
+
+        Cursor c =
+                db.rawQuery("SELECT b.image_path, a.unit FROM Ingredients a, Recipe_Master b, Recipe_Ingredients c WHERE a.ingredient_id = c.ingredient_id AND b.recipe_id = c.recipe_id AND  b.recipe_id = "+recipeID+" ;",null);
+        if(c!=null)
+        {
+            if(c.moveToFirst())
+            {
+                String recipeImage = c.getString(0);
+                return recipeImage;
+             }
+            else
+                return null;
+        }
+        else
+            return null;
+
+    }
+
     public List GetQuickAndEasyRecipesImages()
     {
         List QuickandEasyImages = new ArrayList();
@@ -509,6 +570,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return QuickandEasyImages;
 
     }
+
+    public List GetQuickandEasyRecipeIds()
+    {
+        List CheapEatsTitles = new ArrayList();
+
+        Cursor c =
+                db.rawQuery("SELECT c.recipe_id FROM Other_Category a, Recipe_Category b, Recipe_Master c WHERE a.name = 'Quick & Easy' AND a.other_id = b.other_id AND b.recipe_id = c.recipe_id",null);
+        if(c!=null)
+        {
+            if(c.moveToFirst())
+            {
+                do {
+                    String recipename = c.getString(0);
+                    CheapEatsTitles.add(recipename);
+                }while (c.moveToNext());
+            }
+        }
+        return CheapEatsTitles;
+
+    }
+
+
 
     public List GetCheapEatsRecipeNames()
     {
@@ -536,6 +619,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         Cursor c =
                 db.rawQuery("SELECT c.image_path FROM Other_Category a, Recipe_Category b, Recipe_Master c WHERE a.name = 'Cheap' AND a.other_id = b.other_id AND b.recipe_id = c.recipe_id",null);
+        if(c!=null)
+        {
+            if(c.moveToFirst())
+            {
+                do {
+                    String recipename = c.getString(0);
+                    CheapEatsTitles.add(recipename);
+                }while (c.moveToNext());
+            }
+        }
+        return CheapEatsTitles;
+
+    }
+
+    public List GetCheapEatsRecipeIds()
+    {
+        List CheapEatsTitles = new ArrayList();
+
+        Cursor c =
+                db.rawQuery("SELECT c.recipe_id FROM Other_Category a, Recipe_Category b, Recipe_Master c WHERE a.name = 'Cheap' AND a.other_id = b.other_id AND b.recipe_id = c.recipe_id",null);
         if(c!=null)
         {
             if(c.moveToFirst())
@@ -592,6 +695,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    public List GetHealthyRecipeIds()
+    {
+        List CheapEatsTitles = new ArrayList();
+
+        Cursor c =
+                db.rawQuery("SELECT c.recipe_id FROM Other_Category a, Recipe_Category b, Recipe_Master c WHERE a.name = 'Healthy' AND a.other_id = b.other_id AND b.recipe_id = c.recipe_id",null);
+        if(c!=null)
+        {
+            if(c.moveToFirst())
+            {
+                do {
+                    String recipename = c.getString(0);
+                    CheapEatsTitles.add(recipename);
+                }while (c.moveToNext());
+            }
+        }
+        return CheapEatsTitles;
+
+    }
+
+
 
     public List GetSearchRecipeNames(String string)
     {
@@ -600,6 +724,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String temp =  "%"+string+"%";
         Cursor c =
                 db.rawQuery("SELECT name FROM Recipe_Master Where name like '"+temp+"' ;",null);
+        if(c!=null)
+        {
+            if(c.moveToFirst())
+            {
+                do {
+                    String recipename = c.getString(0);
+                    recipeTitles.add(recipename);
+                }while (c.moveToNext());
+            }
+        }
+        return recipeTitles;
+
+    }
+
+    public List GetSearchRecipeImages(String string)
+    {
+        List recipeTitles = new ArrayList();
+
+        String temp =  "%"+string+"%";
+        Cursor c =
+                db.rawQuery("SELECT image_path FROM Recipe_Master Where name like '"+temp+"' ;",null);
         if(c!=null)
         {
             if(c.moveToFirst())

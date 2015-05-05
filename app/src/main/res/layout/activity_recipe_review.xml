@@ -1,0 +1,79 @@
+<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="edu.tamu.cs.success.srinath.michelinchef.activities.RecipeReview">
+
+    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true"></TableLayout>
+
+
+</RelativeLayout>
+-->
+
+
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+tools:context="edu.tamu.cs.success.srinath.michelinchef.activities.RecipeReview"
+    android:weightSum="1">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+
+
+</LinearLayout>
+
+    <ImageView
+        android:layout_width="156dp"
+        android:layout_height="189dp"
+        android:id="@+id/imageButton"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="55dp"
+        android:text="Ingredients"
+        android:id="@+id/textView"
+        android:textColor="#ffe94294"
+        android:textSize="28dp"
+        android:textStyle="bold|italic" />
+
+    <ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="209dp"
+        android:layout_weight="0.82">
+
+    <TableLayout
+        android:id="@+id/tableLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:shrinkColumns="*"
+        android:stretchColumns="*" >
+    </TableLayout>
+</ScrollView>
+
+    <Button
+        android:layout_width="113dp"
+        android:layout_height="wrap_content"
+        android:text="COOK"
+        android:id="@+id/button"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#ffe94294"
+        android:textSize="18dp"
+        android:textStyle="bold" />
+
+</LinearLayout>
