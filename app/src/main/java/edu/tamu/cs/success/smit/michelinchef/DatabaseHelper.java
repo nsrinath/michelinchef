@@ -571,6 +571,74 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    public List GetListOfStepImages(String recipeID)
+    {
+        List QuickandEasyImages = new ArrayList();
+
+        Cursor c =
+                db.rawQuery("SELECT image_path FROM Recipe WHERE recipe_id = "+recipeID+" ;",null);
+        //select name, image_path from Recipe_Master WHERE name like '%string%';
+        if(c!=null)
+        {
+            if(c.moveToFirst())
+            {
+                do {
+                    String recipename = c.getString(0);
+                    QuickandEasyImages.add(recipename);
+
+                }while (c.moveToNext());
+            }
+        }
+
+        return QuickandEasyImages;
+
+    }
+
+
+    public List GetListOfSteps(String recipeID)
+    {
+        List QuickandEasyImages = new ArrayList();
+
+        Cursor c =
+                db.rawQuery("SELECT step FROM Recipe WHERE recipe_id = "+recipeID+" ;",null);
+        //select name, image_path from Recipe_Master WHERE name like '%string%';
+        if(c!=null)
+        {
+            if(c.moveToFirst())
+            {
+                do {
+                    String recipename = c.getString(0);
+                    QuickandEasyImages.add(recipename);
+
+                }while (c.moveToNext());
+            }
+        }
+        return QuickandEasyImages;
+
+    }
+
+
+    public List GetListOfStepTimes(String recipeID)
+    {
+        List QuickandEasyImages = new ArrayList();
+
+        Cursor c =
+                db.rawQuery("SELECT step_time FROM Recipe WHERE recipe_id = "+recipeID+" ;",null);
+        //select name, image_path from Recipe_Master WHERE name like '%string%';
+        if(c!=null)
+        {
+            if(c.moveToFirst())
+            {
+                do {
+                    String recipename = c.getString(0);
+                    QuickandEasyImages.add(recipename);
+
+                }while (c.moveToNext());
+            }
+        }
+        return QuickandEasyImages;
+    }
+
     public List GetQuickandEasyRecipeIds()
     {
         List CheapEatsTitles = new ArrayList();
