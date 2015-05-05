@@ -17,6 +17,7 @@ import java.util.concurrent.TimeUnit;
 import edu.tamu.cs.success.srinath.michelinchef.R;
 import edu.tamu.cs.success.srinath.michelinchef.adapters.RecipeRecyclerViewAdapter;
 import edu.tamu.cs.success.srinath.michelinchef.entities.RecipeStep;
+import edu.tamu.cs.success.srinath.michelinchef.fragments.CheapEatsFragment;
 
 /**
  * Created by srinath on 4/29/15.
@@ -58,6 +59,11 @@ public class RecipeCardActivity extends Activity{
 
         RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
+
+        /* get Recipe ID from Intent */
+        Bundle extras = getIntent().getExtras();
+        Log.e("DEBUG_MC", extras.getString(CheapEatsFragment.RECIPE_ID));
+        String recipeId = extras.getString(CheapEatsFragment.RECIPE_ID);
 
         /* Initialize the list of steps for the current recipe */
         initializeRecipeSteps();
@@ -116,6 +122,7 @@ public class RecipeCardActivity extends Activity{
      * Get the recipe steps form the database
      */
     private void initializeRecipeSteps() {
+        //Get Step text, step image in int and step time in milliseconds from database
         aRecipe = new ArrayList<>();
         aRecipe.add(new RecipeStep("This is the first step!", R.drawable.cuisine_american, 10000));
         aRecipe.add(new RecipeStep("Now, the dish is Indian!", R.drawable.cuisine_chinese, 7000));

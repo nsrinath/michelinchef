@@ -46,15 +46,6 @@ public class MainActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button mTmpCardLauncher = (Button) findViewById(R.id.tempCardLauncher);
-        mTmpCardLauncher.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent launchRecipeCardActivity = new Intent(MainActivity.this, RecipeCardActivity.class);
-                startActivity(launchRecipeCardActivity);
-            }
-        });
-
         helper = new DatabaseHelper(this);
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
