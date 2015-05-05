@@ -24,7 +24,7 @@
                 android:id="@+id/recipeStepTimer"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="@string/sample_timer"
+                android:text="@string/null_timer"
                 android:textSize="25sp"
                 android:padding="8dp"/>
 
@@ -46,8 +46,8 @@
                 android:padding="4dp"/>
 
             <ImageView
-                android:layout_width="192dp"
-                android:layout_height="192dp"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
                 android:id="@+id/recipeCurrentImage"
                 android:src="@drawable/cuisine_indian"
                 android:padding="2dp"/>
