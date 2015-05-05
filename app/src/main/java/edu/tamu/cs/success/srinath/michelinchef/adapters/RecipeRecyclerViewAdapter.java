@@ -45,6 +45,13 @@ public class RecipeRecyclerViewAdapter extends
         recipeViewHolder.stepTimer.setText(
                 timerValueAsString(aRecipe.get(i).getHowLongToCookInMillis()));
         recipeViewHolder.stepInstruction.setText(aRecipe.get(i).getWhatToDo());
+        String stepInstructionStr = recipeViewHolder.stepInstruction.getText().toString();
+        if (stepInstructionStr.toLowerCase().contains("high"))
+            recipeViewHolder.stepHeat.setText("High Heat");
+        else if (stepInstructionStr.toLowerCase().contains("medium"))
+            recipeViewHolder.stepHeat.setText("Medium Heat");
+        else if (stepInstructionStr.toLowerCase().contains("low"))
+            recipeViewHolder.stepHeat.setText("Low Heat");
         recipeViewHolder.stepOutput.setImageResource(aRecipe.get(i).getWhatItWillLookLike());
 
         // animate the entry....
@@ -82,6 +89,7 @@ public class RecipeRecyclerViewAdapter extends
         public TextView stepTimer;
         public TextView stepInstruction;
         public ImageView stepOutput;
+        public TextView stepHeat;
 
         public RecipeViewHolder(View itemView) {
             super(itemView);
@@ -89,6 +97,7 @@ public class RecipeRecyclerViewAdapter extends
             stepTimer = (TextView) itemView.findViewById(R.id.recipeStepTimer);
             stepInstruction = (TextView) itemView.findViewById(R.id.recipeCurrentStep);
             stepOutput = (ImageView) itemView.findViewById(R.id.recipeCurrentImage);
+            stepHeat = (TextView) itemView.findViewById(R.id.recipeHeatIndicator);
         }
     }
 
