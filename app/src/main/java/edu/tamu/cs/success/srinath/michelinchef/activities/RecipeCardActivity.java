@@ -136,7 +136,7 @@ public class RecipeCardActivity extends Activity{
             if(tempRecipeImages.get(i) != null)
             ImagesString[i] = tempRecipeImages.get(i).toString();
             else
-                ImagesString[i] = "cuisine_american";
+                ImagesString[i] = "happy_cooking";
             images[i]=getResources().getIdentifier(ImagesString[i], "drawable", getApplicationContext().getPackageName());
         }
         long[] time = new long[tempRecipeTimes.size()];
