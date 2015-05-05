@@ -1,8 +1,8 @@
 package edu.tamu.cs.success.srinath.michelinchef.fragments;
 
 import android.app.Activity;
-import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,10 +10,9 @@ import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
-import edu.tamu.cs.success.srinath.michelinchef.activities.MainActivity;
 import edu.tamu.cs.success.srinath.michelinchef.R;
+import edu.tamu.cs.success.srinath.michelinchef.activities.MainActivity;
 
 
 /**
@@ -77,9 +76,6 @@ public class TopStoriesFragment extends Fragment {
                 doubleImage.startAnimation(AnimationUtils.loadAnimation(
                         getActivity().getApplicationContext(), R.anim.image_press_animation
                 ));
-                Toast.makeText(getActivity().getApplicationContext(), "First of Two Images",
-                        Toast.LENGTH_SHORT)
-                        .show();
             }
         });
 
@@ -89,10 +85,6 @@ public class TopStoriesFragment extends Fragment {
                 doubleImage.startAnimation(AnimationUtils.loadAnimation(
                         getActivity().getApplicationContext(), R.anim.image_press_animation
                 ));
-                Toast.makeText(getActivity().getApplicationContext(), "Second of Two Images",
-                        Toast.LENGTH_SHORT)
-                        .show();
-
             }
         });
 
@@ -113,9 +105,6 @@ public class TopStoriesFragment extends Fragment {
                 singleImage.startAnimation(AnimationUtils.loadAnimation(
                         getActivity().getApplicationContext(), R.anim.image_press_animation
                 ));
-                Toast.makeText(getActivity().getApplicationContext(), "One of One Images",
-                        Toast.LENGTH_SHORT)
-                        .show();
             }
         });
         return singleImage;

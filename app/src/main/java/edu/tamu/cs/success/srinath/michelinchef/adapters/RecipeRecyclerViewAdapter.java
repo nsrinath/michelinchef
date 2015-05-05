@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import edu.tamu.cs.success.srinath.michelinchef.R;
-import edu.tamu.cs.success.srinath.michelinchef.activities.RecipeCardActivity;
 import edu.tamu.cs.success.srinath.michelinchef.entities.RecipeStep;
 
 /**
@@ -59,14 +58,13 @@ public class RecipeRecyclerViewAdapter extends
     }
 
     private String timerValueAsString(long howLongToCookInMillis) {
-        return String.format(RecipeCardActivity.TIMER_FORMAT,
-                (TimeUnit.MILLISECONDS.toMinutes(howLongToCookInMillis) -
-                        TimeUnit.MILLISECONDS.toMinutes(howLongToCookInMillis) *
-                                TimeUnit.MILLISECONDS.toHours(howLongToCookInMillis)),
 
-                (TimeUnit.MILLISECONDS.toSeconds(howLongToCookInMillis) -
-                        TimeUnit.MILLISECONDS.toSeconds(howLongToCookInMillis) *
-                                TimeUnit.MILLISECONDS.toMinutes(howLongToCookInMillis)));
+        return String.format("%d min, %d sec",
+                TimeUnit.MILLISECONDS.toMinutes(howLongToCookInMillis),
+                TimeUnit.MILLISECONDS.toSeconds(howLongToCookInMillis) -
+                        TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(howLongToCookInMillis))
+        );
+
     }
 
     @Override

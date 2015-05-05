@@ -125,32 +125,29 @@ public class RecipeCardActivity extends Activity{
     private void initializeRecipeSteps() {
         //Get Step text, step image in int and step time in milliseconds from database
         aRecipe = new ArrayList<>();
+
         DatabaseHelper dbHelper = new DatabaseHelper(this);
         List tempRecipeSteps = dbHelper.GetListOfSteps(recipeId);
         List tempRecipeImages = dbHelper.GetListOfStepImages(recipeId);
         List tempRecipeTimes = dbHelper.GetListOfStepTimes(recipeId);
-       // textOfImages = new String[tempRecipeSteps.size()];
         String[] ImagesString = new String[tempRecipeImages.size()];
         int[] images = new int[tempRecipeImages.size()];
+
         for(int i=0;i<tempRecipeImages.size();i++) {
             if(tempRecipeImages.get(i) != null)
-            ImagesString[i] = tempRecipeImages.get(i).toString();
+                ImagesString[i] = tempRecipeImages.get(i).toString();
             else
                 ImagesString[i] = "cuisine_american";
             images[i]=getResources().getIdentifier(ImagesString[i], "drawable", getApplicationContext().getPackageName());
         }
         long[] time = new long[tempRecipeTimes.size()];
-        for(int i = 0;i<tempRecipeTimes.size();i++)
-        {
-         time[i]=  Integer.parseInt(tempRecipeTimes.get(i).toString()) * 60000;
+        for(int i = 0; i<tempRecipeTimes.size(); i++) {
+            time[i]=  Integer.parseInt(tempRecipeTimes.get(i).toString()) * 60000;
         }
 
 
         for(int i = 0;i< tempRecipeImages.size();i++)
             aRecipe.add(new RecipeStep(tempRecipeSteps.get(i).toString(), images[i], time[i]));
-        /*aRecipe.add(new RecipeStep("This is the first step!", R.drawable.cuisine_american, 10000));
-        aRecipe.add(new RecipeStep("Now, the dish is Indian!", R.drawable.cuisine_chinese, 7000));
-        aRecipe.add(new RecipeStep("LOL! This time though..", R.drawable.cuisine_indian, 3000));*/
     }
 
     /**
@@ -190,16 +187,11 @@ public class RecipeCardActivity extends Activity{
             if (recipeCountDownTimerTV == null) {
                 Log.e(TAG, "Error - null text view for timer - onTick()");
             }
-            recipeCountDownTimerTV.setText("" +
-                    String.format(TIMER_FORMAT,
-                            (TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) -
-                                    TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) *
-                                            TimeUnit.MILLISECONDS.toHours(millisUntilFinished)),
-
-                            (TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) -
-                                    TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) *
-                                            TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished)))
-            );
+            recipeCountDownTimerTV.setText( "" + String.format("%d min, %d sec",
+                    TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished),
+                    TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) -
+                            TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))
+            ));
             millisRemainingToComplete = millisUntilFinished;
         }
 

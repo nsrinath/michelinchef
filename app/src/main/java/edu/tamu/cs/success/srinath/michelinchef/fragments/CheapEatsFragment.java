@@ -1,22 +1,20 @@
 package edu.tamu.cs.success.srinath.michelinchef.fragments;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.Toast;
 
 import java.util.List;
 
 import edu.tamu.cs.success.smit.michelinchef.DatabaseHelper;
-import edu.tamu.cs.success.srinath.michelinchef.activities.MainActivity;
 import edu.tamu.cs.success.srinath.michelinchef.R;
+import edu.tamu.cs.success.srinath.michelinchef.activities.MainActivity;
 import edu.tamu.cs.success.srinath.michelinchef.activities.RecipeReview;
 import edu.tamu.cs.success.srinath.michelinchef.adapters.RecipeGridAdapter;
 
@@ -77,23 +75,16 @@ public class CheapEatsFragment extends Fragment {
         for(int i=0;i<tempRecipeNames.size();i++) {
             textOfImages[i] = tempRecipeNames.get(i).toString();
         }
-        Log.d("DEBUG-MC", "Inflating rootView");
         View rootView = inflater.inflate(R.layout.fragment_cheap_eats, container, false);
         GridView gridView = (GridView) rootView.findViewById(R.id.hrGridView);
         RecipeGridAdapter recipeGridAdapter = new RecipeGridAdapter(
                 getActivity().getApplicationContext(),
                 images, textOfImages);
         gridView.setAdapter(recipeGridAdapter);
-        Log.d("DEBUG-MC", "Setting grid view adapter");
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.d("DEBUG-MC", "Launchin Toast");
-                Toast.makeText(getActivity().getApplicationContext(),
-                        "You clicked on item howdy" + tempRecipeIds.get(position),
-                        Toast.LENGTH_SHORT).show();
-//                Log.d("DEBUG-MC", "Launchin Intent");
                 Intent intent = new Intent(getActivity(), RecipeReview.class);
                 intent.putExtra(RECIPE_ID, tempRecipeIds.get(position).toString());
                 startActivity(intent);

@@ -1,20 +1,19 @@
 package edu.tamu.cs.success.srinath.michelinchef.fragments;
 
 import android.app.Activity;
-import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.Toast;
 
 import java.util.List;
 
 import edu.tamu.cs.success.smit.michelinchef.DatabaseHelper;
-import edu.tamu.cs.success.srinath.michelinchef.activities.MainActivity;
 import edu.tamu.cs.success.srinath.michelinchef.R;
+import edu.tamu.cs.success.srinath.michelinchef.activities.MainActivity;
 import edu.tamu.cs.success.srinath.michelinchef.adapters.RecipeGridAdapter;
 
 
@@ -80,9 +79,6 @@ public class SearchableFragment extends Fragment {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getActivity().getApplicationContext(),
-                        "You clicked on item " + position,
-                        Toast.LENGTH_SHORT).show();
             }
         });
 

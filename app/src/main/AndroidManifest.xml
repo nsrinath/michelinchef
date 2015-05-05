@@ -17,24 +17,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CuisinesActivity"
-            android:label="@string/title_activity_cuisines" >
-        </activity>
-        <activity
-            android:name=".QuickEasy"
-            android:label="@string/title_quick_easy" >
-        </activity>
-        <activity
-            android:name=".CheapEats"
-            android:label="@string/title_cheap_eats" >
-        </activity>
-        <activity
-            android:name=".DigitalCard"
-            android:label="@string/title_digital_card" >
-        </activity>
-        <activity
             android:name=".activities.RecipeCardActivity"
-            android:label="RecipeCardActivity" >
+            android:label="Recipe Cards" >
         </activity>
         <activity
             android:name=".activities.RecipeReview"
