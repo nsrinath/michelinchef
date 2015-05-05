@@ -92,11 +92,17 @@ public class RecipeReview extends Activity {
         DatabaseHelper dbHelper = new DatabaseHelper(this);
         List tempIngredientNames = dbHelper.GetIngredientNames(recipeId);
         List tempIngredientQuantities = dbHelper.GetIngredientQuantities(recipeId);
-        String recipeImage = "R.drawable."+dbHelper.GetIngredientImage(recipeId);
+        String recipeImage;
+        if(dbHelper.GetIngredientImage(recipeId) == null)
+            recipeImage = "happy_cooking";
+        else
+            recipeImage = dbHelper.GetIngredientImage(recipeId);
         int rows = (tempIngredientNames.size() < tempIngredientQuantities.size()) ? tempIngredientNames.size() : tempIngredientQuantities.size();
 
         ImageView imageView = (ImageView) findViewById(R.id.imageButton);
+
         imageView.setImageResource(getResources().getIdentifier( recipeImage, "drawable", getApplicationContext().getPackageName()));
+
         // outer for loop
         for (int i = 0; i < rows; i++) {
 
