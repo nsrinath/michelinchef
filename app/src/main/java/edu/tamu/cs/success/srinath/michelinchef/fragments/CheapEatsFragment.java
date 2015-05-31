@@ -50,29 +50,27 @@ public class CheapEatsFragment extends Fragment {
     public CheapEatsFragment() {
     }
 
-   public void search()
-   {
-
-   }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         DatabaseHelper dbHelper = new DatabaseHelper(this.getActivity());
-        String temp ="cheese";
+        String temp = "cheese";
         dbHelper.GetSearchRecipeNames(temp);
 
+        // multiple DB operations can be replaced by single DB operation throughout the app
         List tempRecipeNames = dbHelper.GetCheapEatsRecipeNames();
         List tempRecipeImages = dbHelper.GetCheapEatsRecipeImages();
         final List tempRecipeIds = dbHelper.GetCheapEatsRecipeIds();
         textOfImages = new String[tempRecipeNames.size()];
         String[] ImagesString = new String[tempRecipeImages.size()];
         images = new int[tempRecipeImages.size()];
-        for(int i=0;i<tempRecipeImages.size();i++) {
+        for (int i = 0; i < tempRecipeImages.size(); i++) {
             ImagesString[i] = tempRecipeImages.get(i).toString();
-            images[i]=getResources().getIdentifier(ImagesString[i] , "drawable", getActivity().getApplicationContext().getPackageName());
+            images[i] = getResources().getIdentifier(ImagesString[i], "drawable",
+                    getActivity().getApplicationContext().getPackageName());
         }
-        for(int i=0;i<tempRecipeNames.size();i++) {
+        for (int i = 0; i < tempRecipeNames.size(); i++) {
             textOfImages[i] = tempRecipeNames.get(i).toString();
         }
         View rootView = inflater.inflate(R.layout.fragment_cheap_eats, container, false);

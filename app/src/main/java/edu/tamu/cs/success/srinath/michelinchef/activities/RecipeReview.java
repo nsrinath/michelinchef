@@ -3,16 +3,10 @@ package edu.tamu.cs.success.srinath.michelinchef.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.app.ProgressDialog;
-import android.database.Cursor;
-import android.os.AsyncTask;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -28,7 +22,7 @@ import edu.tamu.cs.success.srinath.michelinchef.R;
 import edu.tamu.cs.success.srinath.michelinchef.fragments.CheapEatsFragment;
 
 public class RecipeReview extends Activity {
-    TableLayout table_layout;
+    TableLayout tableLayout;
     String recipeId;
 
     @Override
@@ -40,10 +34,7 @@ public class RecipeReview extends Activity {
         Log.e("DEBUG_MC", extras.getString(CheapEatsFragment.RECIPE_ID));
         recipeId = extras.getString(CheapEatsFragment.RECIPE_ID);
 
-        // look up the db for recipeID and display ingredients and steps...
-//        sqlcon = new SQLController(this);
-
-        table_layout = (TableLayout) findViewById(R.id.tableLayout1);
+        tableLayout = (TableLayout) findViewById(R.id.tableLayout1);
 
         BuildTable();
         Button cookButton;
@@ -81,12 +72,6 @@ public class RecipeReview extends Activity {
 
     private void BuildTable() {
 
-        //sqlcon.open();
-        //Cursor c = sqlcon.readEntry();
-
-//        int rows = c.getCount();
-  //      int cols = c.getColumnCount();
-
         int cols = 2;
 
         DatabaseHelper dbHelper = new DatabaseHelper(this);
@@ -94,7 +79,7 @@ public class RecipeReview extends Activity {
         List tempIngredientQuantities = dbHelper.GetIngredientQuantities(recipeId);
         String recipeImage;
         if(dbHelper.GetIngredientImage(recipeId) == null)
-            recipeImage = "happy_cooking";
+            recipeImage = "happy_cooking"; // use a generic image
         else
             recipeImage = dbHelper.GetIngredientImage(recipeId);
         int rows = (tempIngredientNames.size() < tempIngredientQuantities.size()) ? tempIngredientNames.size() : tempIngredientQuantities.size();
@@ -119,22 +104,18 @@ public class RecipeReview extends Activity {
                 tv.setBackgroundResource(R.drawable.ab_transparent_orangetheme);
                 tv.setGravity(Gravity.CENTER);
                 tv.setTextSize(12);
-    //            tv.setPadding(0, 5, 0, 5);
-                if(j==0)//Ingredient name
+                if(j==0) //Ingredient name
                     tv.setText(tempIngredientNames.get(i).toString());
-                else//Ingredient Quantities
+                else //Ingredient Quantities
                     tv.setText(tempIngredientQuantities.get(i).toString());
 
                 row.addView(tv);
 
             }
 
-            //c.moveToNext();
-
-            table_layout.addView(row);
+            tableLayout.addView(row);
 
         }
-        //sqlcon.close();
     }
 
 }

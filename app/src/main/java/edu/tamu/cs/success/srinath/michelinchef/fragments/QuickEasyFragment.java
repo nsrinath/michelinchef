@@ -61,11 +61,12 @@ public class QuickEasyFragment extends Fragment {
         textOfImages = new String[tempRecipeNames.size()];
         String[] ImagesString = new String[tempRecipeImages.size()];
         images = new int[tempRecipeImages.size()];
-        for(int i=0;i<tempRecipeImages.size();i++) {
+        for (int i = 0; i < tempRecipeImages.size(); i++) {
             ImagesString[i] = tempRecipeImages.get(i).toString();
-            images[i]=getResources().getIdentifier(ImagesString[i] , "drawable", getActivity().getApplicationContext().getPackageName());
+            images[i] = getResources().getIdentifier(ImagesString[i], "drawable",
+                    getActivity().getApplicationContext().getPackageName());
         }
-        for(int i=0;i<tempRecipeNames.size();i++) {
+        for (int i = 0; i < tempRecipeNames.size(); i++) {
             textOfImages[i] = tempRecipeNames.get(i).toString();
         }
 

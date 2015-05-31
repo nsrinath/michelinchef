@@ -25,6 +25,7 @@ public class TopStoriesFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_SECTION_NUMBER = "section_number";
     private int widthFragment = 0;
+
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -32,6 +33,7 @@ public class TopStoriesFragment extends Fragment {
      * @return A new instance of fragment TopStoriesFragment.
      */
     public static TopStoriesFragment newInstance(int sectionNumber) {
+        // Sample static layout - needs to be dynamic
         TopStoriesFragment fragment = new TopStoriesFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
@@ -63,6 +65,7 @@ public class TopStoriesFragment extends Fragment {
 
     /**
      * sets up a horizontal two image layout
+     *
      * @return View
      */
     private View setUpDoubleImage() {
@@ -93,6 +96,7 @@ public class TopStoriesFragment extends Fragment {
 
     /**
      * sets up a single image layout
+     *
      * @return View
      */
     private View setUpSingleImage() {

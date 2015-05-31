@@ -35,7 +35,6 @@ public class HealthyRecipesFragment extends Fragment {
     public static final String RECIPE_ID = "recipe_id";
 
 
-
     private String[] textOfImages;
     private int[] images = {
             R.drawable.cuisine_indian,
@@ -71,18 +70,19 @@ public class HealthyRecipesFragment extends Fragment {
         textOfImages = new String[tempRecipeNames.size()];
         String[] ImagesString = new String[tempRecipeImages.size()];
         images = new int[tempRecipeImages.size()];
-        for(int i=0;i<tempRecipeImages.size();i++) {
+        for (int i = 0; i < tempRecipeImages.size(); i++) {
             ImagesString[i] = tempRecipeImages.get(i).toString();
-            images[i]=getResources().getIdentifier(ImagesString[i] , "drawable", getActivity().getApplicationContext().getPackageName());
+            images[i] = getResources().getIdentifier(ImagesString[i], "drawable",
+                    getActivity().getApplicationContext().getPackageName());
         }
-        for(int i=0;i<tempRecipeNames.size();i++) {
+        for (int i = 0; i < tempRecipeNames.size(); i++) {
             textOfImages[i] = tempRecipeNames.get(i).toString();
         }
         View rootView = inflater.inflate(R.layout.fragment_healthy_recipes, container, false);
         GridView gridView = (GridView) rootView.findViewById(R.id.hrGridView);
         RecipeGridAdapter recipeGridAdapter = new RecipeGridAdapter(
-                                                    getActivity().getApplicationContext(),
-                                                    images, textOfImages);
+                getActivity().getApplicationContext(),
+                images, textOfImages);
         gridView.setAdapter(recipeGridAdapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

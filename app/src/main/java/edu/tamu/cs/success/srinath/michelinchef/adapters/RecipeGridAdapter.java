@@ -1,8 +1,6 @@
 package edu.tamu.cs.success.srinath.michelinchef.adapters;
 
-import android.app.Activity;
 import android.content.Context;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,7 +80,8 @@ public class RecipeGridAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             View gridView;
-            LayoutInflater layoutInflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater layoutInflater = (LayoutInflater) ctx.getSystemService(
+                    Context.LAYOUT_INFLATER_SERVICE);
             gridView = new View(ctx);
             gridView = layoutInflater.inflate(R.layout.recipe_grid_row, null);
             TextView recipeGridText = (TextView) gridView.findViewById(R.id.recipeGridRowText);

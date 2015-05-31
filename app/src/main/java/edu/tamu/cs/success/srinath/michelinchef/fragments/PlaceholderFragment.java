@@ -43,8 +43,7 @@ public class PlaceholderFragment extends Fragment {
         return rootView;
     }
 
-    @Override
-    public void onAttach(Activity activity) {
+    @Override    public void onAttach(Activity activity) {
         super.onAttach(activity);
         ((MainActivity) activity).onSectionAttached(
                 getArguments().getInt(ARG_SECTION_NUMBER));

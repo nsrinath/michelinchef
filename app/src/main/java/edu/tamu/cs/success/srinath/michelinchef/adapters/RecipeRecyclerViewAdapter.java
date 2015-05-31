@@ -46,6 +46,7 @@ public class RecipeRecyclerViewAdapter extends
                 timerValueAsString(aRecipe.get(i).getHowLongToCookInMillis()));
         recipeViewHolder.stepInstruction.setText(aRecipe.get(i).getWhatToDo());
         String stepInstructionStr = recipeViewHolder.stepInstruction.getText().toString();
+        // rudimentary heat handler
         if (stepInstructionStr.toLowerCase().contains("high"))
             recipeViewHolder.stepHeat.setText("High Heat");
         else if (stepInstructionStr.toLowerCase().contains("medium"))
